@@ -46,7 +46,7 @@ const VideoApp = () => {
 
   return (
     <>
-    <div className="w-3/5">
+    <div className="w-4/5">
       {isMeetingStarted ? (
         <MeetingAppProvider
           selectedMic={selectedMic}

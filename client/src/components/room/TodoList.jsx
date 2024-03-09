@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { useState, useMemo, useCallback } from "react";
 import {
-  Box,
   Checkbox,
   Button,
   Divider,
@@ -16,13 +16,8 @@ import { useAuth } from "../../providers/AuthProvider.jsx";
 import { useMutation } from "../../hooks/useMutation.js";
 import { HTTP_METHOD } from "../../hooks/http-methods.js";
 
-/**
- * This allows user to set a to do list. Users can add tasks to remind themselves.
- */
-
 export default function TodoList() {
   const [tasks, setTasks] = useState([]);
-  const [completedTasks, setCompletedTasks] = useState([]);
   const [hideCompleted, setHideCompleted] = useState(false);
   const [newTask, setNewTask] = useState("");
 
@@ -69,69 +64,45 @@ export default function TodoList() {
   );
 
   return (
-    <Box
-      sx={{
-        bgcolor: "rgba(255, 255, 255, 0.5)",
-        borderRadius: "10px",
-        padding: "2vw",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        color: "black",
-        overflowY: "scroll",
-        "&::-webkit-scrollbar": {
-          width: "10px",
-        },
-        "&::-webkit-scrollbar-track": {
-          backgroundColor: "rgba(0,0,0,0)",
-        },
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: "rgba(255,255,255,.4)",
-        },
-      }}
-    >
-      {/* title */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        <Typography variant="h3">My Tasks</Typography>
+    <div className="bg-white shadow-lg rounded-md p-8 flex flex-col justify-between text-gray-800 overflow-y-auto scrollbar">
+      {/* Title */}
+      <div className="flex justify-between items-center mb-4">
+        <Typography variant="h3" className="font-semibold text-xl">
+          My Tasks
+        </Typography>
         <Button
           variant="outlined"
-          sx={{ color: "black", borderColor: "black" }}
+          className="text-gray-800 border-gray-800"
           onClick={handleHideCompleted}
         >
-          {hideCompleted ? "Show" : "Hide"} completed
+          {hideCompleted ? "Show" : "Hide"} Completed
         </Button>
-      </Box>
-      <Divider sx={{ my: 2, borderBottomWidth: 3, bgcolor: "black" }} />
-      {/* tasks to do */}
+      </div>
+      <Divider className="my-2 border-gray-800" />
+      {/* Tasks to do */}
       <List>
         {todoList
           .filter(({ isCompleted }) => !isCompleted)
           ?.map(({ content }) => (
-            <ListItem key={`${Math.random()}`}>
+            <ListItem key={`${Math.random()}`} className="flex items-center">
               <Checkbox onChange={() => handleTaskComplete(content)} />
               <ListItemText primary={content} />
             </ListItem>
           ))}
       </List>
 
-      {/* complete tasks */}
+      {/* Completed tasks */}
       {!hideCompleted && (
         <>
-          {tasks.length > 0 && completedTasks.length > 0 && (
-            <Divider sx={{ my: 1, borderBottomWidth: 3 }} />
-          )}
+          {tasks.length > 0 && <Divider className="my-1 border-gray-800" />}
           <List>
             {todoList
               .filter(({ isCompleted }) => isCompleted)
               ?.map(({ content }) => (
-                <ListItem key={`${Math.random()}`}>
+                <ListItem
+                  key={`${Math.random()}`}
+                  className="flex items-center"
+                >
                   <Checkbox
                     color="secondary"
                     checked
@@ -142,7 +113,7 @@ export default function TodoList() {
                       <Typography
                         color="secondary"
                         variant="body1"
-                        style={{ textDecoration: "line-through" }}
+                        className="line-through"
                       >
                         {content}
                       </Typography>
@@ -154,31 +125,27 @@ export default function TodoList() {
         </>
       )}
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
+      {/* Add new task */}
+      <div className="flex justify-start items-center mt-4">
         <TextField
-          placeholder={"Add new TODO"}
+          placeholder="Add new TODO"
           fullWidth={false}
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          variant={"standard"}
-          sx={{ flex: 1 }}
+          variant="standard"
+          className="flex-1"
         />
+      </div>
+      <div className="py-2 mx-auto">
         <Button
-          variant="text"
-          sx={{ color: "black", borderColor: "black" }}
+          variant="contained"
+          color="primary"
           onClick={handleAddTask}
           startIcon={<AddIcon />}
         >
           Add Task
         </Button>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }

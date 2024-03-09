@@ -14,12 +14,13 @@ class UserController {
   }
 
   // create the user identity
-  async createUser(email, username) {
+  async createUser(email, username, categories) {
     const defaultAssets = await productModel.find({ name: "default" });
     return await userModel.create({
       email,
       username,
       assets: defaultAssets.map(({ _id }) => _id),
+      categories,
       playList: [
         {
           songUrl: "https://www.youtube.com/watch?v=W-ITtmkDoD8",

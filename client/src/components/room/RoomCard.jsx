@@ -11,6 +11,7 @@ const RoomCard = ({
   amount,
   showVagueBackground = true,
   onClick,
+  
 }) => {
   const [vagueHeight, setVagueHeight] = useState("50%");
   return (

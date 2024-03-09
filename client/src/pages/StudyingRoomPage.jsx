@@ -363,9 +363,10 @@ const StudyingRoomPage = () => {
                 zIndex: 100,
               }}
             >
-              <Box container sx={{ width: "1  0%", height: "100%" }}>
+              {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
+              <Box container sx={{ width: "60%", height: "100%" }}>
                 <VideoApp />
-              </Box>
+              </Box>)}
             </Box>
           </Box>
           <Box

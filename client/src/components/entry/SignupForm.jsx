@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useCallback, useRef, useState } from "react";
 import {
@@ -8,6 +10,11 @@ import {
   InputAdornment,
   IconButton,
   TextField,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  FormControl,
+  Typography,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -24,6 +31,7 @@ const SignupForm = ({ onSubmit }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [categories, setCategories] = useState([]);
 
   const baseName = useRef("");
 
@@ -44,7 +52,8 @@ const SignupForm = ({ onSubmit }) => {
   }, [fetchUsernameSuggestion]);
 
   const handleSubmit = async () => {
-    const values = { username, email, password };
+    const values = { username, email, password, categories };
+    console.log("SignUpForm:" ,categories);
     if (Object.values(values).some((v) => v.length === 0)) {
       setError("Please complete all fields");
       return;
@@ -69,6 +78,16 @@ const SignupForm = ({ onSubmit }) => {
       setSigningUp(false);
     }
   };
+
+  const handleCheckboxChange = (subject) => (event) => {
+    if (event.target.checked) {
+      setCategories([...categories, subject]);
+    } else {
+      setCategories(categories.filter(item => item !== subject));
+    }
+  };
+
+  console.log(categories);
 
   return (
     <Box>
@@ -116,6 +135,53 @@ const SignupForm = ({ onSubmit }) => {
           }
         />
       </Box>
+      <div>
+        <Box sx={{ width: 400, bgcolor: 'background.paper', p: 2 }}>
+          <Typography variant="h6" fontWeight="bold" gutterBottom>
+            What's your subject of interest?
+          </Typography>
+          <FormControl component="fieldset">
+            <FormGroup row>
+              {/* <Box sx={{ display: 'flex', flexDirection: 'column' }}> */}
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Mathematics"
+                  onChange={handleCheckboxChange("Mathematics")}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="History"
+                  onChange={handleCheckboxChange("History")}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Geography"
+                  onChange={handleCheckboxChange("Geography")}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Science"
+                  onChange={handleCheckboxChange("Science")}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Psychology"
+                  onChange={handleCheckboxChange("Psychology")}
+                />
+                <FormControlLabel
+                  control={<Checkbox />}
+                  label="Literature"
+                  onChange={handleCheckboxChange("English Literature")}
+                />
+              {/* </Box> */}
+            </FormGroup>
+          </FormControl>
+        </Box>
+      <Box>
+        
+        
+      </Box>
+    </div>
       <Box>
         <FormHelperText>{error}</FormHelperText>
       </Box>
