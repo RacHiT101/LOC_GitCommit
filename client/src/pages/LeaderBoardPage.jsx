@@ -5,8 +5,6 @@ import TopLeaderCard from "../components/leaderboard/TopLeaderCard.jsx";
 import RankBar from "../components/leaderboard/RankBar.jsx";
 import { useFetch } from "../hooks/useFetch.js";
 
-
-
 const LeaderBoardPage = () => {
   const { data, isLoading } = useFetch("users");
   const dataModified = isLoading
