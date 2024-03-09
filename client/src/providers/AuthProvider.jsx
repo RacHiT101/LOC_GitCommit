@@ -29,6 +29,7 @@ import {
   
   const googleAuthProvider = new GoogleAuthProvider();
   
+  // eslint-disable-next-line react/prop-types
   const AuthProvider = ({ children }) => {
     const createUser = useCreateUserHandler();
     const fetchUsers = useFetchUserHandler();
@@ -117,7 +118,9 @@ import {
     const logout = useCallback(async () => {
       try {
         await signOut(auth);
-      } catch (e) {}
+      } catch (e) {
+        console.log(e)
+      }
     }, [auth, signOut]);
   
     const reFetchUserData = useCallback(async () => {
