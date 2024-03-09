@@ -12,12 +12,6 @@ import { useEffect } from "react";
 import { useMusic } from "../../providers/MusicProvider.jsx";
 import StyledCard from "../common/StyleCard.jsx";
 
-/**
- * A music product card contains the music title, the artist who composed the music, the
- * money it costs to purchase the music, the play button for users to listen to the music for a
- * few seconds, and the purchase button to purchase the music product.
- */
-
 const playButtonStyle = {
   backgroundColor: "#400A71",
   color: "white",

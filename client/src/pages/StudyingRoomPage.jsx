@@ -32,7 +32,6 @@ import VolumeDownRounded from "@mui/icons-material/VolumeDownRounded";
 const sortByOptions = ["name", "experience"];
 
 const StudyingRoomPage = () => {
-  // array of {senderId, profileImageUrl, content}
   const [chatHistory, setChatHistory] = useState([]);
   const [roomUsers, setRoomUsers] = useState([]);
   const [sortBy, setSortBy] = useState("name");

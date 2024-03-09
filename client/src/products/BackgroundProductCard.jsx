@@ -8,11 +8,6 @@ import { Box } from "@mui/material";
 import PurchaseButton from "./PurchaseButton.jsx";
 import StyledCard from "../common/StyleCard.jsx";
 
-/**
- * A background product card contains the background image, background name, the money it
- * costs to purchase the background, and the purchase button to purchase the background product.
- */
-
 const BackgroundProductCard = ({ value, productName, image, productId }) => {
   return (
     <StyledCard

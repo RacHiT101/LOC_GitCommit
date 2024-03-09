@@ -16,10 +16,6 @@ import { useAuth } from "../../providers/AuthProvider.jsx";
 import { useMutation } from "../../hooks/useMutation.js";
 import { HTTP_METHOD } from "../../hooks/http-methods.js";
 
-/**
- * This allows user to set a to do list. Users can add tasks to remind themselves.
- */
-
 export default function TodoList() {
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
