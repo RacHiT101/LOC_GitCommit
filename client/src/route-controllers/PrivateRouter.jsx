@@ -2,9 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import PublicRoomPage from "../pages/PublicRoomPage";
 import Studystats from "../pages/studystats/Studystats";
 import LeaderboardPage from "../pages/LeaderBoardPage";
-
-
-
+import PrivateRoomPage from "../pages/PrivateRoomPage";
 
 const PrivateRouter = () => {
   return (
@@ -13,6 +11,8 @@ const PrivateRouter = () => {
         <Route path={"/public-rooms"} element={<PublicRoomPage />} />
         <Route path={"/studystats"} element={<Studystats />} />
         <Route path={"/leaderboard"} element={<LeaderboardPage />} />
+        <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
+
 
         {/*
         <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
