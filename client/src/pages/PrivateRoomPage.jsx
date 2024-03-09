@@ -1,9 +1,9 @@
 import Page from "../containers/Page.jsx";
-import React, { useState, useMemo } from "react";
+import  { useState, useMemo } from "react";
 import { Box } from "@mui/material";
-import AssetXPIcon from "../assets/asset-xp-icon.svg";
-import AssetMoneyIcon from "../assets/asset-money-icon.svg";
-import FriendContainer from "../components/friend/FriendContainer.jsx";
+// import AssetXPIcon from "../assets/asset-xp-icon.svg";
+// import AssetMoneyIcon from "../assets/asset-money-icon.svg";
+// import FriendContainer from "../components/friend/FriendContainer.jsx";
 // import AssetLabel from "../components/profile/assets/AssetLabel.jsx";
 import PrivateRoomsContainer from "../components/room/PrivateRoomsContainer.jsx";
 import PrivateRoomCreationForm from "../components/room/PrivateRoomCreationForm.jsx";
@@ -25,8 +25,8 @@ const PrivateRoomPage = () => {
 
   return (
     <Page title={"Private Room"} sx={{ width: "100%" }}>
-      <Box className="flex flex-1 flex-row flex-auto justify-start h-full w-full">
-        <Box
+      <Box className="flex flex-row flex-auto justify-start h-full w-full">
+        {/* <Box
           sx={{
             minWidth: 180,
             maxWidth: 250,
@@ -34,7 +34,7 @@ const PrivateRoomPage = () => {
           className="w-1/2 h-full"
         >
           <FriendContainer />
-        </Box>
+        </Box> */}
 
         <Box className="flex flex-col mt-10 ml-20 mr-20 w-full space-y-10">
           <Box

@@ -1,7 +1,7 @@
+/* eslint-disable react/prop-types */
 import { Grid } from "@mui/material";
 import RoomCard from "./RoomCard.jsx";
 import RoomCreater from "./RoomCreater.jsx";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -19,7 +19,7 @@ const PrivateRoomsContainer = ({
 
   return (
     <Grid container sx={{ height: "100%" }}>
-      {privateRooms?.map(({ _id, name, backgroundUrl }, index) => (
+      {privateRooms?.map(({ _id, name, backgroundUrl }) => (
         <Grid
           item
           xs={6}

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Grid, Box, Typography } from "@mui/material";
 import BackgroundCard from "./BackgroundCard.jsx";

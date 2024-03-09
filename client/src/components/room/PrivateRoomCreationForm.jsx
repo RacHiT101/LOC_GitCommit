@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useCallback, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -37,6 +38,7 @@ const PrivateRoomCreationForm = ({ onCreateRoom, onCancel }) => {
   useEffect(() => {
     (async () => {
       const assetIds = getCustomUser()?.assets;
+      console.log(assetIds);
       const allAssets = await Promise.all(
         assetIds.map((id) =>
           fetchProductHandler.run({
@@ -71,6 +73,7 @@ const PrivateRoomCreationForm = ({ onCreateRoom, onCancel }) => {
       await createPrivateRoomHandler.run({
         body,
       });
+    // eslint-disable-next-line no-useless-catch
     } catch (e) {
       throw e;
     } finally {

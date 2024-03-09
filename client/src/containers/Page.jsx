@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { Box, IconButton, Drawer, Tooltip } from "@mui/material";
 import { useCallback, useEffect, useMemo } from "react";
 import PublicIcon from "@mui/icons-material/Public";
@@ -49,7 +51,9 @@ const Page = ({
             },
           });
           await reFetchUserData();
-        } catch (e) {}
+        } catch (e) {
+          console.log(e)
+        }
         handleClose();
         navigate("/private-rooms");
       },
@@ -80,13 +84,15 @@ const Page = ({
       },
       {
         icon: <PublicOffIcon />,
-        onClick: () => {
-          if (!getCustomUser()?.isPrivateRoomUnlocked) {
-            openPrivateRoomUnlockModal();
-          } else {
-            navigate("/private-rooms");
-          }
-        },
+        // onClick: () => {
+        //   if (!getCustomUser()?.isPrivateRoomUnlocked) {
+        //     openPrivateRoomUnlockModal();
+        //   } else {
+        //     navigate("/private-rooms");
+        //   }
+        // },
+        onClick: () => navigate("/private-rooms"),
+
         shouldHighlight: pathname.startsWith("/private-rooms"),
         tooltip: "Private Rooms",
       },
