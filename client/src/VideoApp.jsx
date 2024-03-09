@@ -1,179 +1,121 @@
-import "./App.css";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import {
-  MeetingProvider,
-  MeetingConsumer,
-  useMeeting,
-  useParticipant,
-} from "@videosdk.live/react-sdk";
-import ReactPlayer from "react-player";
-import { authToken, createMeeting } from "./API";
+import React, { useEffect, useState } from "react";
+import { Constants, MeetingProvider } from "@videosdk.live/react-sdk";
+import { MeetingAppProvider } from "./MeetingAppContextDef.jsx";
+import { ILSContainer } from "./interactive-live-streaming/ILSContainer.jsx";
+import { LeaveScreen } from "./components/screens/LeaveScreen.jsx";
+import { JoiningScreen } from "./components/screens/JoiningScreen.jsx";
+import { useAuth } from "./providers/AuthProvider.jsx";
 
-function JoinScreen({ getMeetingAndToken }) {
-  const [meetingId, setMeetingId] = useState(null);
-  const onClick = async () => {
-    await getMeetingAndToken(meetingId);
-  };
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Enter Meeting Id"
-        onChange={(e) => {
-          setMeetingId(e.target.value);
-        }}
-      />
-      <button onClick={onClick}>Join</button>
-      {" or "}
-      <button onClick={onClick}>Create Meeting</button>
-    </div>
+// import { JoiningScreen } from "./components/screens/JoiningScreen.js";
+// import { ILSContainer } from "./interactive-live-streaming/ILSContainer.js";
+// import { MeetingAppProvider } from "./MeetingAppContextDef.js";
+// import { LeaveScreen } from "./components/screens/LeaveScreen.jsx";
+
+const VideoApp = () => {
+
+  const {getCustomUser} = useAuth();
+
+  const [token, setToken] = useState("");
+  const [meetingId, setMeetingId] = useState("");
+  const [participantName, setParticipantName] = useState(getCustomUser().username);
+  const [micOn, setMicOn] = useState(true);
+  const [webcamOn, setWebcamOn] = useState(true);
+  const [selectedMic, setSelectedMic] = useState({ id: null });
+  const [selectedWebcam, setSelectedWebcam] = useState({ id: null });
+  const [selectWebcamDeviceId, setSelectWebcamDeviceId] = useState(
+    selectedWebcam.id
   );
-}
+  const [meetingMode, setMeetingMode] = useState(Constants.modes.CONFERENCE);
+  const [selectMicDeviceId, setSelectMicDeviceId] = useState(selectedMic.id);
+  const [isMeetingStarted, setMeetingStarted] = useState(false);
+  const [isMeetingLeft, setIsMeetingLeft] = useState(false);
 
-function ParticipantView(props) {
-  const micRef = useRef(null);
-  const { webcamStream, micStream, webcamOn, micOn, isLocal, displayName } =
-    useParticipant(props.participantId);
-
-  const videoStream = useMemo(() => {
-    if (webcamOn && webcamStream) {
-      const mediaStream = new MediaStream();
-      mediaStream.addTrack(webcamStream.track);
-      return mediaStream;
-    }
-  }, [webcamStream, webcamOn]);
+  const isMobile = window.matchMedia(
+    "only screen and (max-width: 768px)"
+  ).matches;
 
   useEffect(() => {
-    if (micRef.current) {
-      if (micOn && micStream) {
-        const mediaStream = new MediaStream();
-        mediaStream.addTrack(micStream.track);
-
-        micRef.current.srcObject = mediaStream;
-        micRef.current
-          .play()
-          .catch((error) =>
-            console.error("videoElem.current.play() failed", error)
-          );
-      } else {
-        micRef.current.srcObject = null;
-      }
+    if (isMobile) {
+      window.onbeforeunload = () => {
+        return "Are you sure you want to exit?";
+      };
     }
-  }, [micStream, micOn]);
+  }, [isMobile]);
+
+  console.log("Hiii");
 
   return (
-    <div>
-      <p>
-        Participant: {displayName} | Webcam: {webcamOn ? "ON" : "OFF"} | Mic:{" "}
-        {micOn ? "ON" : "OFF"}
-      </p>
-      <audio ref={micRef} autoPlay playsInline muted={isLocal} />
-      {webcamOn && (
-        <ReactPlayer
-          //
-          playsinline // extremely crucial prop
-          pip={false}
-          light={false}
-          controls={false}
-          muted={true}
-          playing={true}
-          //
-          url={videoStream}
-          //
-          height={"300px"}
-          width={"300px"}
-          onError={(err) => {
-            console.log(err, "participant video error");
+    <>
+    <div className="w-3/5">
+      {isMeetingStarted ? (
+        <MeetingAppProvider
+          selectedMic={selectedMic}
+          selectedWebcam={selectedWebcam}
+          initialMicOn={micOn}
+          initialWebcamOn={webcamOn}
+        >
+          <MeetingProvider
+            config={{
+              meetingId,
+              micEnabled: micOn,
+              webcamEnabled: webcamOn,
+              name: participantName ? participantName : "TestUser",
+              mode: meetingMode,
+              multiStream: false,
+            }}
+            token={token}
+            reinitialiseMeetingOnConfigChange={true}
+            joinWithoutUserInteraction={true}
+          >
+            <ILSContainer
+              onMeetingLeave={() => {
+                setToken("");
+                setMeetingId("");
+                setParticipantName("");
+                setWebcamOn(false);
+                setMicOn(false);
+                setMeetingStarted(false);
+              }}
+              setIsMeetingLeft={setIsMeetingLeft}
+              selectedMic={selectedMic}
+              selectedWebcam={selectedWebcam}
+              selectWebcamDeviceId={selectWebcamDeviceId}
+              setSelectWebcamDeviceId={setSelectWebcamDeviceId}
+              selectMicDeviceId={selectMicDeviceId}
+              setSelectMicDeviceId={setSelectMicDeviceId}
+              micEnabled={micOn}
+              webcamEnabled={webcamOn}
+              meetingMode={meetingMode}
+              setMeetingMode={setMeetingMode}
+            />
+          </MeetingProvider>
+        </MeetingAppProvider>
+      ) : isMeetingLeft ? (
+        <LeaveScreen setIsMeetingLeft={setIsMeetingLeft} />
+      ) : (
+        <JoiningScreen
+          participantName={participantName}
+          setParticipantName={setParticipantName}
+          setMeetingId={setMeetingId}
+          setToken={setToken}
+          setMicOn={setMicOn}
+          micEnabled={micOn}
+          webcamEnabled={webcamOn}
+          setSelectedMic={setSelectedMic}
+          setSelectedWebcam={setSelectedWebcam}
+          setWebcamOn={setWebcamOn}
+          onClickStartMeeting={() => {
+            setMeetingStarted(true);
           }}
+          startMeeting={isMeetingStarted}
+          setIsMeetingLeft={setIsMeetingLeft}
+          meetingMode={meetingMode}
+          setMeetingMode={setMeetingMode}
         />
       )}
-    </div>
+      </div>
+    </>
   );
-}
-
-function Controls() {
-  const { leave, toggleMic, toggleWebcam } = useMeeting();
-  return (
-    <div>
-      <button onClick={() => leave()}>Leave</button>
-      <button onClick={() => toggleMic()}>toggleMic</button>
-      <button onClick={() => toggleWebcam()}>toggleWebcam</button>
-    </div>
-  );
-}
-
-function MeetingView(props) {
-  const [joined, setJoined] = useState(null);
-  //Get the method which will be used to join the meeting.
-  //We will also get the participants list to display all participants
-  const { join, participants } = useMeeting({
-    //callback for when meeting is joined successfully
-    onMeetingJoined: () => {
-      setJoined("JOINED");
-    },
-    //callback for when meeting is left
-    onMeetingLeft: () => {
-      props.onMeetingLeave();
-    },
-  });
-  const joinMeeting = () => {
-    setJoined("JOINING");
-    join();
-  };
-
-  return (
-    <div className="container">
-      <h3>Meeting Id: {props.meetingId}</h3>
-      {joined && joined == "JOINED" ? (
-        <div>
-          <Controls />
-          //For rendering all the participants in the meeting
-          {[...participants.keys()].map((participantId) => (
-            <ParticipantView
-              participantId={participantId}
-              key={participantId}
-            />
-          ))}
-        </div>
-      ) : joined && joined == "JOINING" ? (
-        <p>Joining the meeting...</p>
-      ) : (
-        <button onClick={joinMeeting}>Join</button>
-      )}
-    </div>
-  );
-}
-
-function VideoApp() {
-  const [meetingId, setMeetingId] = useState(null);
-
-  //Getting the meeting id by calling the api we just wrote
-  const getMeetingAndToken = async (id) => {
-    const meetingId =
-      id == null ? await createMeeting({ token: authToken }) : id;
-    setMeetingId(meetingId);
-  };
-
-  //This will set Meeting Id to null when meeting is left or ended
-  const onMeetingLeave = () => {
-    setMeetingId(null);
-  };
-
-  return authToken && meetingId ? (
-    <MeetingProvider
-      config={{
-        meetingId,
-        micEnabled: true,
-        webcamEnabled: true,
-        name: "C.V. Raman",
-      }}
-      token={authToken}
-    >
-      <MeetingView meetingId={meetingId} onMeetingLeave={onMeetingLeave} />
-    </MeetingProvider>
-  ) : (
-    <JoinScreen getMeetingAndToken={getMeetingAndToken} />
-  );
-}
+};
 
 export default VideoApp;
