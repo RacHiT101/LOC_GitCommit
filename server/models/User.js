@@ -30,6 +30,11 @@ const UserSchema = new Schema({
     type: [String],
     default: [],
   },
+  categories: {
+    required: true,
+    type: [String],
+    // default: []
+  },
   isPrivateRoomUnlocked: {
     required: true,
     type: Boolean,

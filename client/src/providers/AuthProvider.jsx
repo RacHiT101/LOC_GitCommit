@@ -77,7 +77,7 @@ import {
     );
   
     const signup = useCallback(
-      async (email, password, username) => {
+      async (email, password, username, categories) => {
         const usersWithSameEmailPromise = fetchUsers({ email });
         const usersWithSameUsernamePromise = fetchUsers({ username });
   
@@ -96,7 +96,7 @@ import {
   
         await Promise.all([
           createUserWithEmailAndPassword(auth, email, password),
-          createUser(username, email),
+          createUser(username, email, categories),
         ]);
       },
       [auth, createUserWithEmailAndPassword]

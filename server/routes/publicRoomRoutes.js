@@ -24,7 +24,8 @@ router.post(
         req.body.name,
         req.body.users,
         req.body.playList,
-        req.body.backgroundUrl
+        req.body.backgroundUrl,
+        req.body.categories
       )
     );
   }
