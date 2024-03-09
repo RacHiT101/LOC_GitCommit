@@ -5,7 +5,10 @@ import Studystats from "../pages/studystats/Studystats";
 import LeaderBoardPage from "../pages/LeaderBoardPage";
 import MarketplacePage from "../pages/MarketplacePage";
 import ProfilePage from "../pages/ProfilePage";
-import Homepage from "../pages/HomePage";
+import StudyingRoomPage from "../pages/StudyingRoomPage";
+import FriendsPage from "../pages/FriendsPage";
+import TokenPage from "../pages/TokenPage";
+// import Homepage from "../pages/HomePage";
 import VideoApp from "../VideoApp";
 
 const PrivateRouter = () => {
@@ -14,7 +17,7 @@ const PrivateRouter = () => {
       <Routes>
         <Route path={"/public-rooms"} element={<PublicRoomPage />} />
         <Route path={"/studystats"} element={<Studystats />} />
-        <Route path={"/leaderboard"} element={<VideoApp />} />
+        <Route path={"/leaderboard"} element={<LeaderBoardPage/>} />
         <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
         <Route path={"/marketplace"} element={<MarketplacePage />} />
         <Route path={"/profile"} element={<ProfilePage />} />

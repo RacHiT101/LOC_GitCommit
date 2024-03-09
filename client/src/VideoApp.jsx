@@ -4,6 +4,7 @@ import { MeetingAppProvider } from "./MeetingAppContextDef.jsx";
 import { ILSContainer } from "./interactive-live-streaming/ILSContainer.jsx";
 import { LeaveScreen } from "./components/screens/LeaveScreen.jsx";
 import { JoiningScreen } from "./components/screens/JoiningScreen.jsx";
+import { useAuth } from "./providers/AuthProvider.jsx";
 
 // import { JoiningScreen } from "./components/screens/JoiningScreen.js";
 // import { ILSContainer } from "./interactive-live-streaming/ILSContainer.js";
@@ -11,9 +12,12 @@ import { JoiningScreen } from "./components/screens/JoiningScreen.jsx";
 // import { LeaveScreen } from "./components/screens/LeaveScreen.jsx";
 
 const VideoApp = () => {
+
+  const {getCustomUser} = useAuth();
+
   const [token, setToken] = useState("");
   const [meetingId, setMeetingId] = useState("");
-  const [participantName, setParticipantName] = useState("");
+  const [participantName, setParticipantName] = useState(getCustomUser().username);
   const [micOn, setMicOn] = useState(true);
   const [webcamOn, setWebcamOn] = useState(true);
   const [selectedMic, setSelectedMic] = useState({ id: null });
@@ -42,6 +46,7 @@ const VideoApp = () => {
 
   return (
     <>
+    <div className="w-3/5">
       {isMeetingStarted ? (
         <MeetingAppProvider
           selectedMic={selectedMic}
@@ -108,6 +113,7 @@ const VideoApp = () => {
           setMeetingMode={setMeetingMode}
         />
       )}
+      </div>
     </>
   );
 };

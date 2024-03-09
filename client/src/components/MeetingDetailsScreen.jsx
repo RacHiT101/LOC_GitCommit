@@ -1,6 +1,7 @@
 import { CheckIcon, ClipboardIcon } from "@heroicons/react/outline";
 import { Constants } from "@videosdk.live/react-sdk";
 import React, { useState } from "react";
+import { useAuth } from "../providers/AuthProvider";
 
 export function MeetingDetailsScreen({
   onClickJoin,
@@ -19,6 +20,10 @@ export function MeetingDetailsScreen({
   const [iscreateMeetingClicked, setIscreateMeetingClicked] = useState(false);
   const [isJoinMeetingClicked, setIsJoinMeetingClicked] = useState(false);
 
+  const { getCurrentUser, loading, getCustomUser } = useAuth();
+
+  // console.log(getCurrentUser());
+  console.log(getCustomUser());
   return (
     <div
       className={`flex flex-1 flex-col justify-center w-full md:p-[6px] sm:p-1 p-1.5`}
@@ -66,6 +71,7 @@ export function MeetingDetailsScreen({
           <input
             value={participantName}
             onChange={(e) => setParticipantName(e.target.value)}
+            // value={}
             placeholder="Enter your name"
             className="px-4 py-3 mt-5 bg-gray-650 rounded-xl text-white w-full text-center"
           />
