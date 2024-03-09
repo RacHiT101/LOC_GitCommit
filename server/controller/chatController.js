@@ -1,7 +1,6 @@
 const chatModel = require("../models/Chat");
 
 class ChatController {
-  // get the chat from the two users
   async getChat(myId, customerId) {
     const chatFromUserToCustomer = await chatModel.find({
       sender: myId,

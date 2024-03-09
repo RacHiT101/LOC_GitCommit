@@ -2,7 +2,6 @@ const roomStates = {};
 const songIntervals = {};
 
 module.exports = (io, rooms) => {
-  // Initialize room state for each room in roomStates dictionary
   rooms?.forEach((room) => {
     roomStates[room?.id] = {
       songIndex: 0,
@@ -15,12 +14,10 @@ module.exports = (io, rooms) => {
     roomMemberEmails[id] = [];
   });
 
-  // for each room, keep an interval to keep track of the song time
   rooms?.forEach((room) => {
     songIntervals[room?.id] = null;
   });
 
-  // Define a function to start playing the song for a room
   const playSong = (room) => {
     const roomIndex = rooms?.findIndex((r) => r?.id === room?.id);
     const state = roomStates[room?.id];
@@ -35,7 +32,6 @@ module.exports = (io, rooms) => {
       time: state?.songTime,
     });
 
-    // Start a new interval for the room
     songIntervals[room?.id] = setInterval(() => {
       state.songTime++;
 
@@ -54,12 +50,10 @@ module.exports = (io, rooms) => {
     }, 1000);
   };
 
-  // Start playing songs for each room
   rooms.forEach((room) => {
     playSong(room);
   });
 
-  // Whenever a new user joins, send the current song url, title and played upto time to the client
   io.on("connection", (socket) => {
     socket?.on("join-room", async (roomId) => {
       console.log(`${socket?.user?.name} joined room ${roomId}`);
@@ -74,7 +68,6 @@ module.exports = (io, rooms) => {
 
     socket?.on("leave-room", (roomId) => {
       console.log(`${socket?.user?.name} left room ${roomId}`);
-      // TODO remove user and send list of members
       const index = roomMemberEmails[roomId].indexOf(socket?.user?.email);
       index !== -1 && roomMemberEmails[roomId].splice(index, 1);
       io?.to(roomId).emit("room-member-emails", roomMemberEmails[roomId]);
