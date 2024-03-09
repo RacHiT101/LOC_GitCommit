@@ -50,7 +50,7 @@ const Studystats = () => {
   return (
     <>
       <Page title={"Public Room"} horizontalCenter>
-        <div className="bg-[#10002b] pt-5 w-full">
+        <div className="bg-[#10002b] pt-5 w-full font-Poppins">
           <header className="flex justify-between mx-5">
             <h1 className="text-[#faf3e4] text-2xl">Study Stats</h1>
             <div className="flex gap-2 items-center">

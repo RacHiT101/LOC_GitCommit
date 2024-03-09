@@ -26,7 +26,7 @@ const playButtonStyle = {
   width: "35px",
   borderRadius: "50000px",
   fontSize: 14,
-  fontFamily: "Rubik",
+  fontFamily: "Poppins",
   "&:hover": {
     opacity: "0.9",
     backgroundColor: "#9B84B4",

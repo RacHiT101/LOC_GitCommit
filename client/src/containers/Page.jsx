@@ -127,7 +127,7 @@ const Page = ({
       sx={{
         minHeight: "100vh",
         width: "100%",
-        background: "linear-gradient(to right, #400A71, #1D0652)",
+        background: "#10002b",
         overflowX: "hidden",
         position: "relative",
         display: "flex",

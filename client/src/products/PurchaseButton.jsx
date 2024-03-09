@@ -23,7 +23,7 @@ const PurchaseButton = ({ title, type, image, cost, productId }) => {
     backgroundColor: "#400A71",
     textTransform: "unset !important",
     fontSize: 14,
-    fontFamily: "Rubik",
+    fontFamily: "Poppins",
     "&:hover": {
       opacity: "0.6",
       transform: "scale(1.05)",

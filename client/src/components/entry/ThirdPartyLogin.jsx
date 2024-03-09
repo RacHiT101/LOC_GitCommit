@@ -3,10 +3,6 @@ import { Box, styled, Tooltip } from "@mui/material";
 import google from "../../assets/google-logo.svg";
 import { useAuth } from "../../providers/AuthProvider.jsx";
 
-/**
- * This is used for users to login using third party, i.e., Google Account.
- */
-
 const ThirdPartyLogin = ({ onError }) => {
   const { googleSignIn } = useAuth();
 
