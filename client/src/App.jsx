@@ -1,9 +1,15 @@
 // import './App.css'
 
+import Studystats from "./pages/studystats/Studystats";
+
 function App() {
   // const [count, setCount] = useState(0)
 
-  return <div className="bg-black">Hiii</div>;
+  return (
+    <div>
+     
+    </div>
+  );
 }
 
 export default App;
