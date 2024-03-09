@@ -24,9 +24,9 @@ import {
     transform: "translate(-50%, -50%)",
     width: { xs: "76%", sm: "50%", md: "35%" },
     height: { xs: "70%", sm: "70%", md: "75%" },
-    bgcolor: "#1b0137",
+    bgcolor: "#1E143D",
     borderRadius: "13px",
-    border: "1px #1b0137 solid",
+    border: "1px #1E143D solid",
     overflowX: "hidden",
     p: 1,
   };

@@ -17,8 +17,6 @@ import { useMutation } from "../../hooks/useMutation.js";
 import { HTTP_METHOD } from "../../hooks/http-methods.js";
 import { LoadingButton } from "@mui/lab";
 
-
-
 const PrivateRoomCreationForm = ({ onCreateRoom, onCancel }) => {
   const { getCustomUser } = useAuth();
   const [roomName, setRoomName] = useState("");

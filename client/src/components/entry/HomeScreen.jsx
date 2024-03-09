@@ -56,7 +56,7 @@ const HomeScreen = ({ onLogin, onSignup }) => {
           <Typography
             sx={{
               fontWeight: "999",
-              fontFamily: "Inter",
+              fontFamily: "Poppins",
               fontSize: {
                 xs: "34px",
                 md: "60px",
