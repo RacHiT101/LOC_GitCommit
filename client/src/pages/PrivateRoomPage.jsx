@@ -1,5 +1,5 @@
 import Page from "../containers/Page.jsx";
-import React, { useState, useMemo } from "react";
+import  { useState, useMemo } from "react";
 import { Box } from "@mui/material";
 import AssetXPIcon from "../assets/asset-xp-icon.svg";
 import AssetMoneyIcon from "../assets/asset-money-icon.svg";

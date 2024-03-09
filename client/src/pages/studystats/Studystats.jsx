@@ -10,6 +10,8 @@ import { MdClose } from "react-icons/md";
 import dayjs from "dayjs";
 import Bar from "./components/Bar.jsx";
 import Page from "../../containers/Page.jsx";
+import VideoApp from "../../VideoApp.jsx";
+
 
 const Studystats = () => {
   const calendarRef = useRef(null);
@@ -87,6 +89,7 @@ const Studystats = () => {
               </div>
             </div>
           </header>
+          <VideoApp/>
 
           <div className="grid grid-cols-5 mt-5 gap-5 mx-5 mb-5">
             <div className="col-span-3 bg-[#1e143d] rounded-lg mb-5 ">

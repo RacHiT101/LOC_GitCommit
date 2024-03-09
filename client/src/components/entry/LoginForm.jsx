@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { InputLabel, TextField, Box, FormHelperText } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import ThirdPartyLogin from "./ThirdPartyLogin.jsx";

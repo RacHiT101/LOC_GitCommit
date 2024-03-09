@@ -1,4 +1,5 @@
-import React, { useCallback, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useCallback, useRef, useState } from "react";
 import {
   InputLabel,
   Box,
@@ -37,8 +38,7 @@ const SignupForm = ({ onSubmit }) => {
           : baseName.current
       );
       setUsername(username);
-    } catch (e) {
-    } finally {
+    } catch (e) { /* empty */ } finally {
       setGettingSuggestion(false);
     }
   }, [fetchUsernameSuggestion]);
