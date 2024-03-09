@@ -6,11 +6,6 @@ import { useState } from "react";
 import SearchUserModal from "../modals/SearchUserModal.jsx";
 import { useNavigate } from "react-router-dom";
 
-/**
- * The friend container contains the search button for user to search for specific users,
- * and the friend list which contains all the friends of the users.
- */
-
 const FriendContainer = () => {
   const { getCustomUser } = useAuth();
   const { data, isLoading } = useFetch(`friends?id=${getCustomUser()._id}`);

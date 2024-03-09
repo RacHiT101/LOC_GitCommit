@@ -80,13 +80,7 @@ const Page = ({
       },
       {
         icon: <PublicOffIcon />,
-        onClick: () => {
-          if (!getCustomUser()?.isPrivateRoomUnlocked) {
-            openPrivateRoomUnlockModal();
-          } else {
-            navigate("/private-rooms");
-          }
-        },
+        onClick: () => navigate("/private-rooms"),
         shouldHighlight: pathname.startsWith("/private-rooms"),
         tooltip: "Private Rooms",
       },
