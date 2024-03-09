@@ -1,9 +1,16 @@
-import React from "react"
+import React from "react";
 import { Box } from "@mui/material";
 
 const HomePageSection = ({ children, verticalCenter, horizontalCenter }) => {
   return (
-    <Box sx={{ minWidth: "100vw", minHeight: "100vh", display: "flex", overflowX: "hidden" }}>
+    <Box
+      sx={{
+        minWidth: "100vw",
+        minHeight: "100vh",
+        display: "flex",
+        overflowX: "hidden",
+      }}
+    >
       <Box
         sx={{
           background: "linear-gradient(to right, #3f086a, #2e0659, #3f086a)",
@@ -14,8 +21,8 @@ const HomePageSection = ({ children, verticalCenter, horizontalCenter }) => {
           right: 0,
           display: {
             xs: "block",
-            md: "none"
-          }
+            md: "none",
+          },
         }}
       />
       <Box
@@ -26,13 +33,13 @@ const HomePageSection = ({ children, verticalCenter, horizontalCenter }) => {
           flexDirection: "column",
           justifyContent: verticalCenter ? "center" : "flex-start",
           alignItems: horizontalCenter ? "center" : "flex-start",
-          flex: 1
+          flex: 1,
         }}
       >
         {children}
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default HomePageSection
+export default HomePageSection;

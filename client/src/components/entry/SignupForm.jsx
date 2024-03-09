@@ -14,10 +14,6 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import ThirdPartyLogin from "./ThirdPartyLogin.jsx";
 import { useFetchUsernameSuggestion } from "../../api/user-api.js";
 
-/**
- * This is used for users to sign up for the app.
- */
-
 const SignupForm = ({ onSubmit }) => {
   const [error, setError] = useState("");
   const [signingUp, setSigningUp] = useState(false);

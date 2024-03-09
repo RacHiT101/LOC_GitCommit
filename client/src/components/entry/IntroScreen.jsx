@@ -3,11 +3,6 @@ import Section from "../../containers/HomePageSection.jsx";
 import { Box, styled, Typography } from "@mui/material";
 import LottiePlayer from "./LottiePlayer.jsx";
 
-/**
- * This is the intro screen which contains two sections "STUDY ROOM" and "REWARDS", and the
- * animations that are used to attract users.
- */
-
 const IntroScreen = ({ header2, animation, description, textOnRight }) => {
   return (
     <Section verticalCenter horizontalCenter>

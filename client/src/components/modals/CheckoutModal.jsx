@@ -16,30 +16,7 @@ import {
   import ModalProductCard from "../../products/ModalProductCard.jsx";
   import { LoadingButton } from "@mui/lab";
   import { useState } from "react";
-  
-  /*
-     This modal will be used for the whole app, You can get a below 5 variables from useModal function
-        open,
-        handleClose,
-        handleOpen,
-        content,
-        setContent,
-     you can use these by this way const {open,content,...} = useModal()
-     the content and setContent will used for set up the different UI inside the modal,
-     it has these attributes:
-        title: "",
-        imageTitle: "",
-        image: null,
-        cost: 0,
-        money: 0,
-        type: 0,
-        hasProduct,
-        onClick: () => {},
-     everytime you want to open the modal, you should setContent first and then call handleOpen function
-     the type attribute is used to choose the which type product card you want to set, if the type is 0
-     that means the modal will display for background image, if type is 1, it is for music, 2 is for profile image
-   */
-  
+    
   const style = {
     position: "absolute",
     top: "50%",

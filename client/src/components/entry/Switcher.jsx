@@ -1,26 +1,21 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { Box, Typography } from "@mui/material";
 
-/**
- * This is the switcher used to switch between the states.
- */
-
 const Switcher = ({ options, onStatusChange, currentOption }) => {
-
-  const [status, setStatus] = useState(currentOption)
+  const [status, setStatus] = useState(currentOption);
 
   return (
     <Box
       sx={{
-        display: "flex"
+        display: "flex",
       }}
     >
       {options.map((option) => (
         <Box
           key={option}
           onClick={() => {
-            setStatus(option)
-            onStatusChange(option)
+            setStatus(option);
+            onStatusChange(option);
           }}
           sx={{
             flex: 1,
@@ -32,17 +27,14 @@ const Switcher = ({ options, onStatusChange, currentOption }) => {
             "&:hover": {
               color: option !== status ? "primary.main" : "white",
               cursor: "pointer",
-            }
+            },
           }}
         >
-          <Typography>
-            {option}
-          </Typography>
+          <Typography>{option}</Typography>
         </Box>
       ))}
     </Box>
-  )
-}
+  );
+};
 
-
-export default Switcher
+export default Switcher;

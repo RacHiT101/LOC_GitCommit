@@ -3,10 +3,6 @@ import { InputLabel, TextField, Box, FormHelperText } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import ThirdPartyLogin from "./ThirdPartyLogin.jsx";
 
-/**
- * This is used for users to login into the app.
- */
-
 const LoginForm = ({ onSubmit }) => {
   const [error, setError] = useState("");
   const [loggingIn, setLogging] = useState(false);

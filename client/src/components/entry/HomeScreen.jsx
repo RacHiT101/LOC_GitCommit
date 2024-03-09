@@ -5,7 +5,6 @@ import { Box, styled, Typography, Button } from "@mui/material";
 import AuthBlock from "./AuthBlock.jsx";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-
 const HomeScreen = ({ onLogin, onSignup }) => {
   return (
     <Section horizontalCenter verticalCenter>
@@ -37,7 +36,6 @@ const HomeScreen = ({ onLogin, onSignup }) => {
           <AuthBlock onLogin={onLogin} onSignup={onSignup} />
         </Box>
       </Box>
-      {/* main content */}
       <Box>
         <Box>
           <StyledTypography

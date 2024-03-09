@@ -5,11 +5,6 @@ import LoginForm from "../entry/LoginForm.jsx";
 import SignupForm from "../entry/SignupForm.jsx";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-/**
- * The auth modal contains the back button, switch between Login / Sign up, and
- * login / sign up form.
- */
-
 const AuthModal = ({ onLogin, onSignup, form, onFormChange }) => {
   return (
     <Box
