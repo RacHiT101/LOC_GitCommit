@@ -14,7 +14,7 @@ const productRouter = require("./routes/productRoutes");
 const publicRoomRouter = require("./routes/publicRoomRoutes");
 const privateRoomRouter = require("./routes/privateRoomRoutes");
 const chatRouter = require("./routes/chatRoute");
-const friendRouter = require("./routes/chatRoute");
+const friendRouter = require("./routes/friendRoute");
 
 
 const { firebaseAuth } = require("./middlewares/firebaseAuth");

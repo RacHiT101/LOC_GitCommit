@@ -23,6 +23,8 @@ class FriendController {
   // add friend
   async addFriend(id, fid) {
     const user = await userModel.findById(id);
+    console.log(id);
+    console.log(fid);
     const friendUser = await userModel.findById(fid);
     if (!user.friends.includes(fid)) {
       await userModel.updateOne({ _id: id }, { $push: { friends: fid } });
