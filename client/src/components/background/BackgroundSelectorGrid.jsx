@@ -1,11 +1,7 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Grid, Box, Typography } from "@mui/material";
 import BackgroundCard from "./BackgroundCard.jsx";
-
-/**
- * This provides the background selector for the user, user can choose the background while
- * creating the private room.
- */
 
 export default function BackgroundSelectorGrid({ images, onClick, index }) {
   const [backgroundSelectedArray, setBackgroundSelectedArray] = useState(

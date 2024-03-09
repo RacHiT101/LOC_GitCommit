@@ -3,7 +3,7 @@ import { Image } from "mui-image";
 import goldMedal from "../../assets/podium-gold-medal.svg";
 import silverMedal from "../../assets/podium-silver-medal.svg";
 import bronzeMedal from "../../assets/podium-bronze-medal.svg";
- 
+
 function selectRankingMedal(ranking) {
   if (ranking === 1) {
     return goldMedal;
@@ -23,6 +23,8 @@ const TopLeaderCard = ({ profileImage, name, ranking, hours }) => {
       flexDirection={"column"}
       justifyContent={"center"}
       alignItems={"flex-start"}
+      bgColor={"252641"}
+
       sx={{
         height: "100%",
         width: "95%",

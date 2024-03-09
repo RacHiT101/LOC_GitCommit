@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useCallback, useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -16,8 +17,6 @@ import { useAuth } from "../../providers/AuthProvider.jsx";
 import { useMutation } from "../../hooks/useMutation.js";
 import { HTTP_METHOD } from "../../hooks/http-methods.js";
 import { LoadingButton } from "@mui/lab";
-
-
 
 const PrivateRoomCreationForm = ({ onCreateRoom, onCancel }) => {
   const { getCustomUser } = useAuth();
@@ -37,6 +36,7 @@ const PrivateRoomCreationForm = ({ onCreateRoom, onCancel }) => {
   useEffect(() => {
     (async () => {
       const assetIds = getCustomUser()?.assets;
+      console.log(assetIds);
       const allAssets = await Promise.all(
         assetIds.map((id) =>
           fetchProductHandler.run({
@@ -71,6 +71,7 @@ const PrivateRoomCreationForm = ({ onCreateRoom, onCancel }) => {
       await createPrivateRoomHandler.run({
         body,
       });
+    // eslint-disable-next-line no-useless-catch
     } catch (e) {
       throw e;
     } finally {

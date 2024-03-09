@@ -4,18 +4,12 @@ import React from "react";
 import { useFetch } from "../../hooks/useFetch.js";
 import { useNavigate } from "react-router-dom";
 
-/**
- * A public room container is used to show the public rooms to every user. Each room is shown
- * as a room card, which has the background image of the room and the room name.
- */
-
 const PublicRoomsContainer = () => {
   const { isLoading, data: publicRooms } = useFetch("publicRooms");
   const navigate = useNavigate();
 
   const handleOpenRoom = (id) => {
     navigate(`/rooms/${id}`);
-    // Logic to play music and join room with socket server is moved to StudyingRoomPage useEffect
   };
 
   if (isLoading) return null;

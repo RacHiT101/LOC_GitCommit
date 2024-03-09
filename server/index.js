@@ -13,6 +13,9 @@ const userRouter = require("./routes/userRoutes");
 const productRouter = require("./routes/productRoutes");
 const publicRoomRouter = require("./routes/publicRoomRoutes");
 const privateRoomRouter = require("./routes/privateRoomRoutes");
+const chatRouter = require("./routes/chatRoute");
+const friendRouter = require("./routes/friendRoute");
+
 
 const { firebaseAuth } = require("./middlewares/firebaseAuth");
 
@@ -24,6 +27,11 @@ app.use(express.json());
 app.use("/api/users", userRouter);
 app.use("/api/publicRooms", publicRoomRouter);
 app.use("/api/privateRooms", privateRoomRouter);
+app.use("/api/products", productRouter);
+app.use("/api/chats", chatRouter);
+app.use("/api/friends", friendRouter);
+
+
 
 
 

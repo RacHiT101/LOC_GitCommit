@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState } from "react";
 import { Modal, Box, IconButton, TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useMutation } from "../../hooks/useMutation.js";
@@ -46,7 +47,7 @@ const SearchUserModal = ({ open, onClose }) => {
         sx={{
           width: { xs: "76%", sm: "50%", md: "35%" },
           height: { xs: "70%", sm: "70%", md: "75%" },
-          backgroundColor: "#1B0137",
+          backgroundColor: "#1E143D",
           color: "white",
           position: "absolute",
           top: "50%",

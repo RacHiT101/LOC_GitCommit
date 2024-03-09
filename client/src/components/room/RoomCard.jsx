@@ -3,10 +3,6 @@ import personAmountIcon from "../../assets/room-personAmount-icon.svg";
 import roomLock from "../../assets/room-lock.svg";
 import { useState } from "react";
 
-/**
- * The room card is used to display the private room or the public room.
- */
-
 const RoomCard = ({
   title,
   showPeopleAmount = true,
@@ -93,7 +89,7 @@ const RoomCard = ({
                   ml: 0.3,
                 }}
               >
-                <Typography>{amount}</Typography>
+                <Typography>5000</Typography>
               </Box>
             </Box>
           )}

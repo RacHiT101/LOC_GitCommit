@@ -2,10 +2,6 @@ import React, { useMemo } from "react"
 import { Box } from "@mui/material"
 import Lottie from "lottie-react"
 
-/**
- * This is used for the animation on the intro screen.
- */
-
 const LottiePlayer = ({ animationData, adjustSize = 1, sx = {} }) => {
   const transformValue = useMemo(() => {
     if (typeof adjustSize === "number") {

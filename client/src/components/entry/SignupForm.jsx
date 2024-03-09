@@ -1,4 +1,5 @@
-import React, { useCallback, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useCallback, useRef, useState } from "react";
 import {
   InputLabel,
   Box,
@@ -13,10 +14,6 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import ThirdPartyLogin from "./ThirdPartyLogin.jsx";
 import { useFetchUsernameSuggestion } from "../../api/user-api.js";
-
-/**
- * This is used for users to sign up for the app.
- */
 
 const SignupForm = ({ onSubmit }) => {
   const [error, setError] = useState("");
@@ -41,8 +38,7 @@ const SignupForm = ({ onSubmit }) => {
           : baseName.current
       );
       setUsername(username);
-    } catch (e) {
-    } finally {
+    } catch (e) { /* empty */ } finally {
       setGettingSuggestion(false);
     }
   }, [fetchUsernameSuggestion]);

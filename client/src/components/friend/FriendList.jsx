@@ -1,12 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Box } from "@mui/material";
 import FriendCard from "./FriendCard.jsx";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-
-/**
- * The friend list contains a list of all the friends that the user has. Each friend is shown
- * as a friend card, which contains the friend's profile image and name.
- */
 
 const FriendList = ({ friends, onClick, onAddFriend }) => {
   return (
@@ -18,7 +14,7 @@ const FriendList = ({ friends, onClick, onAddFriend }) => {
       }}
     >
       <List>
-        {friends.map(({ image, name, id }, index) => (
+        {friends?.map(({ image, name, id }, index) => (
           <ListItem key={index} sx={{ p: 1 }}>
             <FriendCard
               id={id}

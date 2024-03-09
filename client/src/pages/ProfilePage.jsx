@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Page from "../containers/Page.jsx";
 import React, { useEffect, useState } from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";

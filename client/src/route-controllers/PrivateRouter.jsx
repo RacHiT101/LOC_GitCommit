@@ -2,8 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import PublicRoomPage from "../pages/PublicRoomPage";
 import PrivateRoomPage from "../pages/PrivateRoomPage";
 import Studystats from "../pages/studystats/Studystats";
-import LeaderboardPage from "../pages/LeaderBoardPage";
 import LeaderBoardPage from "../pages/LeaderBoardPage";
+import MarketplacePage from "../pages/MarketplacePage";
 import ProfilePage from "../pages/ProfilePage";
 import Homepage from "../pages/HomePage";
 import VideoApp from "../VideoApp";
@@ -16,20 +16,12 @@ const PrivateRouter = () => {
         <Route path={"/studystats"} element={<Studystats />} />
         <Route path={"/leaderboard"} element={<VideoApp />} />
         <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
-        <Route path={"/leaderboard"} element={<LeaderboardPage />} />
-        <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
-        <Route path={"/"} element={<Homepage />} />
-
-
-        
-        {/* <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
-        <Route path={"/leaderboard"} element={<LeaderboardPage />} />
-        <Route path={"/marketplace"} element={<MarketplacePage />} /> */}
+        <Route path={"/marketplace"} element={<MarketplacePage />} />
         <Route path={"/profile"} element={<ProfilePage />} />
-        {/* <Route path={"/rooms/:roomId"} element={<StudyingRoomPage />} />
+        <Route path={"/rooms/:roomId"} element={<StudyingRoomPage />} />
         <Route path={"/friends/:friendId"} element={<FriendsPage />} />
         <Route path={"/token"} element={<TokenPage />} />
-        <Route path={"*"} element={<Navigate to={"/public-rooms"} />} /> */}
+        <Route path={"*"} element={<Navigate to={"/public-rooms"} />} />
       </Routes>
     </>
   );
