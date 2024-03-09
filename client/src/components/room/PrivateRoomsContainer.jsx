@@ -41,7 +41,7 @@ const PrivateRoomsContainer = ({
             image={`/src/assets/backgrounds/${backgroundUrl}`}
             showVagueBackground={true}
             onClick={() => handleOpenRoom(_id)}
-            public={false}
+            // public={false}
           />
         </Grid>
       ))}

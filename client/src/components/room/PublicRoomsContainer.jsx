@@ -71,7 +71,7 @@ const PublicRoomsContainer = () => {
               amount={users?.length}
               showVagueBackground={true}
               onClick={() => handleOpenRoom(_id)}
-              public={true}
+              // public={true}
             />
           </Box>
         ))}
