@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import PublicRoomPage from "../pages/PublicRoomPage";
 // import TokenPage from "../pages/TokenPage";
 // import PublicRoomPage from "../pages/PublicRoomPage.jsx";
 // import PrivateRoomPage from "../pages/PrivateRoomPage.jsx";
@@ -17,7 +18,8 @@ const PrivateRouter = () => {
   return (
     <>
       <Routes>
-        {/* <Route path={"/public-rooms"} element={<PublicRoomPage />} />
+         <Route path={"/public-rooms"} element={<PublicRoomPage />} />
+         {/*
         <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
         <Route path={"/leaderboard"} element={<LeaderboardPage />} />
         <Route path={"/marketplace"} element={<MarketplacePage />} />
