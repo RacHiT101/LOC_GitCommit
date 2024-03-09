@@ -3,10 +3,14 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
+
 dotenv.config();
 
 const connectionString = process.env.MONGO_URL;
 mongoose.connect(connectionString);
+
+const userRouter = require("./routes/userRoutes");
+const productRouter = require("./routes/productRoutes");
 
 const { firebaseAuth } = require("./middlewares/firebaseAuth");
 
