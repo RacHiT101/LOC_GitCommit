@@ -29,6 +29,7 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import playButtonStyle from "../components/common/MusicButtonStyle.js";
 import VolumeUpRounded from "@mui/icons-material/VolumeUpRounded";
 import VolumeDownRounded from "@mui/icons-material/VolumeDownRounded";
+import TextEditor from "../components/room/TextEditor.jsx";
 
 const sortByOptions = ["name", "experience"];
 
@@ -419,6 +420,9 @@ const StudyingRoomPage = () => {
                 onSend={chatHandler}
                 onChangeTargetUser={(user) => handleChangeTargetUser(user)}
               />
+            </Box>
+            <Box>
+              <TextEditor />
             </Box>
           </Box>
         </Box>

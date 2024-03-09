@@ -14,14 +14,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useAuth } from "../../providers/AuthProvider.jsx";
 
-/**
- * This chat modal provides the chat box for users to chat in the group or chat with individual
- * friend.
- * chatHistory contains the array of chats, where each chat contains the name, profileImageUrl, and content.
- * targetUser contains the user's name and uid.
- * userList contains an array of users, where each user contains the name, uid, and whether the user is online or not.
- */
-
 const ChatModal = ({
   chatHistory,
   targetUser,
@@ -54,6 +46,11 @@ const ChatModal = ({
   useEffect(() => {
     chatRef.current?.scrollTo(0, chatRef.current?.scrollHeight);
   }, [displayChatHistory]);
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    setAttachedFile(file);
+  };
 
   return (
     <Box
