@@ -1,15 +1,28 @@
-// import './App.css'
+import { useAuth } from "./providers/AuthProvider.jsx";
+import PublicRouter from "./route-controllers/PublicRouter.jsx";
+import PrivateRouter from "./route-controllers/PrivateRouter.jsx";
+import { useEffect } from "react";
+import WebFont from "webfontloader";
+// import { googleFonts } from "./fonts.js";
 
-import Studystats from "./pages/studystats/Studystats";
+const App = () => {
+  const { getCurrentUser, loading, getCustomUser } = useAuth();
 
-function App() {
-  // const [count, setCount] = useState(0)
+  // useEffect(() => {
+  //   WebFont.load({
+  //     google: {
+  //       families: googleFonts,
+  //     },
+  //   });
+  // }, []);
 
-  return (
-    <div>
-     
-    </div>
-  );
-}
+  if (loading) return null;
+
+  if (!getCurrentUser() || !getCustomUser()) {
+    return <PublicRouter />;
+  } else {
+    return <PrivateRouter />;
+  }
+};
 
 export default App;
