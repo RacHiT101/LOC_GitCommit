@@ -22,9 +22,9 @@ const PublicRoomsContainer = () => {
     navigate(`/rooms/${id}`);
   };
 
-  const handleClick = () => {
-    // Handle click logic for creating a study room
-  };
+  // const handleClick = () => {
+  //   // Handle click logic for creating a study room
+  // };
 
   if (isLoading) return null;
 
@@ -71,6 +71,7 @@ const PublicRoomsContainer = () => {
               amount={users?.length}
               showVagueBackground={true}
               onClick={() => handleOpenRoom(_id)}
+              public={true}
             />
           </Box>
         ))}

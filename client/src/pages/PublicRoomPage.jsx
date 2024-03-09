@@ -8,9 +8,10 @@ import AssetMoneyIcon from "../assets/asset-money-icon.svg";
 import PublicRoomsContainer from "../components/room/PublicRoomsContainer.jsx";
 import { useAuth } from "../providers/AuthProvider.jsx";
 import AssetLabel from "../profile/assets/AssetLabel.jsx";
+import FriendContainer from "../components/friend/FriendContainer.jsx";
 
 const PublicRoomPage = () => {
-  const { getCustomUser,getCurrentUser } = useAuth();
+  const { getCustomUser, getCurrentUser } = useAuth();
 
   console.log(getCustomUser());
   // console.log(getCurrentUser());
@@ -18,7 +19,7 @@ const PublicRoomPage = () => {
   return (
     <Page title={"Public Room"} horizontalCenter>
       <Box className="flex flex-1 flex-row flex-auto justify-start h-full w-full">
-        {/* <Box
+        <Box
           sx={{
             minWidth: 180,
             maxWidth: 250,
@@ -27,7 +28,7 @@ const PublicRoomPage = () => {
           className="w-1/2 h-full"
         >
           <FriendContainer />
-        </Box> */}
+        </Box>
 
         <Box className="flex flex-col mt-10 ml-20 mr-20 w-full space-y-10">
           <Box
