@@ -14,7 +14,7 @@ const FriendContainer = () => {
   const [showUserModal, setShowUserModal] = useState(false);
 
   const friendList = !isLoading
-    ? data.map(({ username, _id, profile }) => ({
+    ? data?.map(({ username, _id, profile }) => ({
         name: username,
         image: `/src/assets/profiles/${profile}`,
         id: _id,

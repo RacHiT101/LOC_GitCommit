@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box, IconButton, Typography } from "@mui/material";
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import { useAuth } from "../../providers/AuthProvider.jsx";

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box } from "@mui/material";
 import FriendCard from "./FriendCard.jsx";
 import List from "@mui/material/List";
@@ -13,7 +14,7 @@ const FriendList = ({ friends, onClick, onAddFriend }) => {
       }}
     >
       <List>
-        {friends.map(({ image, name, id }, index) => (
+        {friends?.map(({ image, name, id }, index) => (
           <ListItem key={index} sx={{ p: 1 }}>
             <FriendCard
               id={id}

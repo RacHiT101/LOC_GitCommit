@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { useState, useEffect, createContext, useContext, useRef } from "react";
 import { io } from "socket.io-client";
 import { useAuth } from "../providers/AuthProvider.jsx";
@@ -9,6 +11,7 @@ const context = createContext({});
 const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const { getCurrentUser } = useAuth();
+  console.log(getCurrentUser);
   const notify = useNotification();
   const { playMusic, pauseMusic } = useMusic();
 

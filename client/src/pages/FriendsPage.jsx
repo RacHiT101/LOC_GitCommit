@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import Page from "../containers/Page.jsx";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import ChatModal from "../components/modals/ChatModal.jsx";
 import { useAuth } from "../providers/AuthProvider.jsx";

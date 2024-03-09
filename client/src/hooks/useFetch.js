@@ -34,6 +34,7 @@ export const useFetch = (url, headers) => {
         }
       );
       setData(res.data);
+      console.log(data);
     } catch (e) {
       setError({
         status: e.response.status,

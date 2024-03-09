@@ -1,4 +1,5 @@
-import React, {
+/* eslint-disable no-unused-vars */
+import {
   useCallback,
   useEffect,
   useState,
@@ -69,7 +70,11 @@ const StudyingRoomPage = () => {
   };
 
   const { roomId } = useParams();
+  console.log(roomId);
   const socket = useSocket();
+  console.log(socket);
+  console.log(getCustomUser);
+  console.log(reFetchUserData);
   const { getCustomUser, reFetchUserData } = useAuth();
   const notify = useNotification();
   const {
