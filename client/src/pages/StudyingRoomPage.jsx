@@ -73,8 +73,8 @@ const StudyingRoomPage = () => {
   console.log(roomId);
   const socket = useSocket();
   console.log(socket);
-  console.log(getCustomUser);
-  console.log(reFetchUserData);
+  // console.log(getCustomUser);
+  // console.log(reFetchUserData);
   const { getCustomUser, reFetchUserData } = useAuth();
   const notify = useNotification();
   const {
