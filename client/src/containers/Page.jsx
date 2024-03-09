@@ -10,9 +10,9 @@ import { useAuth } from "../providers/AuthProvider.jsx";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useModal } from "../providers/CheckoutModalProvider.jsx";
 import privateRoomBg from "../assets/private-room/private-room-bg.svg";
-
 import { useMutation } from "../hooks/useMutation.js";
 import { HTTP_METHOD } from "../hooks/http-methods.js";
+import { MdQueryStats } from "react-icons/md";
 
 const drawerWidth = 80;
 
@@ -95,6 +95,12 @@ const Page = ({
         onClick: () => navigate("/leaderboard"),
         shouldHighlight: pathname.startsWith("/leaderboard"),
         tooltip: "Leaderboard",
+      },
+      {
+        icon: <MdQueryStats />,
+        onClick: () => navigate("/studystats"),
+        shouldHighlight: pathname.startsWith("/studystats"),
+        tooltip: "StudyStats",
       },
       {
         icon: <ShoppingCartIcon />,
