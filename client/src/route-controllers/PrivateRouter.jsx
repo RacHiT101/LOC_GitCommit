@@ -5,6 +5,8 @@ import Studystats from "../pages/studystats/Studystats";
 import LeaderboardPage from "../pages/LeaderBoardPage";
 import LeaderBoardPage from "../pages/LeaderBoardPage";
 import ProfilePage from "../pages/ProfilePage";
+import Homepage from "../pages/HomePage";
+import VideoApp from "../VideoApp";
 
 const PrivateRouter = () => {
   return (
@@ -12,10 +14,11 @@ const PrivateRouter = () => {
       <Routes>
         <Route path={"/public-rooms"} element={<PublicRoomPage />} />
         <Route path={"/studystats"} element={<Studystats />} />
-        <Route path={"/leaderboard"} element={<LeaderBoardPage />} />
+        <Route path={"/leaderboard"} element={<VideoApp />} />
         <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
         <Route path={"/leaderboard"} element={<LeaderboardPage />} />
         <Route path={"/private-rooms"} element={<PrivateRoomPage />} />
+        <Route path={"/"} element={<Homepage />} />
 
 
         
