@@ -1,7 +1,7 @@
 import Page from "../containers/Page.jsx";
 import React, { useEffect, useState } from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
-import AssetPanel from "../components/profile/assets/AssetPanel.jsx"; //
+import AssetPanel from "../profile/assets/AssetPanel.jsx"; //
 import moneyIcon from "../assets/asset-money-icon.svg";//
 import xpIcon from "../assets/asset-xp-icon.svg"; //
 import AssetLabel from "../components/profile/assets/AssetLabel.jsx"; //

@@ -7,7 +7,7 @@ import { useFetch } from "../hooks/useFetch.js";
 
 
 
-const LeaderboardPage = () => {
+const LeaderBoardPage = () => {
   const { data, isLoading } = useFetch("users");
   const dataModified = isLoading
     ? []
@@ -158,4 +158,4 @@ const LeaderboardPage = () => {
   );
 };
 
-export default LeaderboardPage;
+export default LeaderBoardPage;

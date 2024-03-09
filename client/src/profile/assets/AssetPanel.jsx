@@ -1,9 +1,9 @@
 import { Box, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import AssetTypeButton from "./AssetTypeButton.jsx";
-import BackgroundGrid from "../../background/BackgroundGrid.jsx";
-import MusicList from "./MusicList.jsx";
-import ProfileGrid from "../ProfileGrid.jsx";
+// import BackgroundGrid from "../../background/BackgroundGrid.jsx";
+// import MusicList from "./MusicList.jsx";
+// import ProfileGrid from "../ProfileGrid.jsx";
 
 const AssetPanel = ({ backgrounds, musics, profilePhotos }) => {
   const [value, setValue] = useState(0);
@@ -63,13 +63,13 @@ const AssetPanel = ({ backgrounds, musics, profilePhotos }) => {
           overflowY: "auto",
         }}
       >
-        {value === 0 ? (
+        {/* {value === 0 ? (
           <BackgroundGrid images={backgrounds} />
         ) : value === 1 ? (
           <MusicList musics={musics} />
         ) : (
           <ProfileGrid images={profilePhotos} />
-        )}
+        )} */}
       </Box>
     </Stack>
   );
