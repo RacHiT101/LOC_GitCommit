@@ -21,9 +21,9 @@ app.use(express.json());
 
 app.use("/api/users", userRouter);
 
-app.use(firebaseAuth)
+// app.use(firebaseAuth)
 
-app.get("/api/secure", [firebaseAuth], (req, res) => {
+app.get("/api/secure", (req, res) => {
     res.json(`Authentication succeed. Hi ${req.user.name}`);
   });
   
