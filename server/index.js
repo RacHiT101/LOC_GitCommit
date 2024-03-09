@@ -12,6 +12,7 @@ mongoose.connect(connectionString);
 const userRouter = require("./routes/userRoutes");
 const productRouter = require("./routes/productRoutes");
 const publicRoomRouter = require("./routes/publicRoomRoutes");
+const privateRoomRouter = require("./routes/privateRoomRoutes");
 
 const { firebaseAuth } = require("./middlewares/firebaseAuth");
 
@@ -22,6 +23,8 @@ app.use(express.json());
 
 app.use("/api/users", userRouter);
 app.use("/api/publicRooms", publicRoomRouter);
+app.use("/api/privateRooms", privateRoomRouter);
+
 
 
 // app.use(firebaseAuth)
