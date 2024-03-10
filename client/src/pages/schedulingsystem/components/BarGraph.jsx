@@ -1,18 +1,18 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const BarGraph = ({ taskExpenses, categories }) => {
+const BarGraph = ({ taskExpenses, categories ,progress}) => {
   // Fixed values for Expected Investment
   const expectedInvestment = [0]; // Adjust according to your categories
 
   const series = [
     {
-      name: "Expected Investment",
-      data: expectedInvestment,
+      name: "No. of Topics",
+      data: taskExpenses,
     },
     {
-      name: "Actual Invested",
-      data: taskExpenses,
+      name: "Topics Covered",
+      data: progress,
     },
   ];
 
