@@ -49,14 +49,14 @@ const ResultPage = ({
       </div>
       <p className="text-white font-semibold my-2 text-xl">Subjects:</p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-        <div className="bg-purple-900 rounded-lg col-span-2 ">
+        <div className="bg-[#1e143d] rounded-lg col-span-2 ">
           <BarGraph
             taskExpenses={NumTopics}
             categories={NameArray}
             progress={progress}
           />
         </div>
-        <div className="bg-purple-900 rounded-lg">
+        <div className="bg-[#1e143d] rounded-lg">
           <PieGraph taskExpenses={NumTopics} categories={NameArray} />
         </div>
       </div>
