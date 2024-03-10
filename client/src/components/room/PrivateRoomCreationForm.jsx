@@ -83,7 +83,9 @@ const PrivateRoomCreationForm = ({ onCreateRoom, onCancel }) => {
   return (
     <Box>
       <Box sx={{ mb: 4 }}>
-        <Typography variant={"h2"} sx={{ color: "white" }}>
+        <Typography variant={"h2"}
+        fontFamily={"Monte"}
+        sx={{ color: "white" }}>
           Create Your a New Private Room
         </Typography>
       </Box>

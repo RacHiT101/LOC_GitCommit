@@ -32,7 +32,7 @@ const PublicRoomPage = () => {
 
         <Box className="flex flex-col mt-10 ml-20 mr-20 w-full space-y-10">
           <Box
-            className="w-80 h-12 flex flex-row justify-end space-x-6 ml-auto"
+            className="w-80 h-12 flex flex-row mr-16 justify-end space-x-6 ml-auto"
             sx={{ minWidth: 300 }}
           >
             <AssetLabel

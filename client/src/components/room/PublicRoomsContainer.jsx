@@ -30,23 +30,32 @@ const PublicRoomsContainer = () => {
 
   return (
     <>
-      <div className="justify-between flex">
-        <div className="flex gap-4">
+      {/* <div className="justify-between flex "> */}
+        <div className="flex  gap-4 ml-4">
           <div
-            className={`bg-purple-700 p-3 cursor-pointer text-white rounded-lg ${selectedRoom === "AllRooms" ? 'bg-opacity-50' : ''}`}
+            className={`p-3 cursor-pointer text-white rounded-lg ${selectedRoom === "AllRooms" ? 'bg-opacity-50' : ''}`}
             onClick={() => setSelectedRoom("AllRooms")}
+            style={{
+              background: `linear-gradient(to right, rgba(50, 0, 60, 0.7), rgba(0, 0, 20, 0.7))`,
+              boxShadow: "3px 3px 2px 1px rgba(255,255,255,0.2)",
+            }}
           >
             All Rooms
           </div>
           <div
-            className={`bg-purple-700 p-3 cursor-pointer text-white rounded-lg ${selectedRoom === "MatchedRooms" ? 'bg-opacity-50' : ''}`}
+            className={`p-3 cursor-pointer text-white rounded-lg ${selectedRoom === "MatchedRooms" ? 'bg-opacity-50' : ''}`}
             onClick={() => setSelectedRoom("MatchedRooms")}
+            style={{
+              background: `linear-gradient(to right, rgba(50, 0, 60, 0.7), rgba(0, 0, 20, 0.7))`,
+              boxShadow: "3px 3px 2px 1px rgba(255,255,255,0.2)",
+            }}
           >
             Matched Rooms
           </div>
+
         </div>
         {/* <div className="bg-purple-700 p-3 rounded-lg" onClick={handleClick}>Create Study Room</div> */}
-      </div>
+      {/* </div> */}
       <Box className="flex flex-row flex-wrap h-full">
         {(selectedRoom === "MatchedRooms"
           ? publicRooms.filter(room => compareCategories(room.categories, getCustomUser().categories))
@@ -71,7 +80,7 @@ const PublicRoomsContainer = () => {
               amount={users?.length}
               showVagueBackground={true}
               onClick={() => handleOpenRoom(_id)}
-              // public={true}
+            // public={true}
             />
           </Box>
         ))}

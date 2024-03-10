@@ -1,18 +1,18 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const BarGraph = ({ taskExpenses, categories }) => {
+const BarGraph = ({ taskExpenses, categories ,progress}) => {
   // Fixed values for Expected Investment
   const expectedInvestment = [0]; // Adjust according to your categories
 
   const series = [
     {
-      name: "Expected Investment",
-      data: expectedInvestment,
+      name: "No. of Topics",
+      data: taskExpenses,
     },
     {
-      name: "Actual Invested",
-      data: taskExpenses,
+      name: "Topics Covered",
+      data: progress,
     },
   ];
 
@@ -34,17 +34,36 @@ const BarGraph = ({ taskExpenses, categories }) => {
     dataLabels: {
       enabled: false,
     },
+    labels: {
+      style: {
+        colors: "#fff", // Set text color to white
+      },
+    },
+    grid:{
+      show: false
+    },
     stroke: {
-      show: true,
-      width: 2,
-      colors: ["transparent"],
+      show: false, // Remove lines parallel to x-axis
     },
     xaxis: {
       categories: categories,
+      labels: {
+        style: {
+          colors: "#fff", // Set text color to white
+        },
+      },
     },
     yaxis: {
       title: {
         text: "₹ (thousands)",
+        style: {
+          color: "#fff", // Set text color to white
+        },
+      },
+      labels: {
+        style: {
+          colors: "#fff", // Set text color to white
+        },
       },
     },
     colors: ["#868CFF", "#432CF3"],
@@ -65,3 +84,4 @@ const BarGraph = ({ taskExpenses, categories }) => {
 };
 
 export default BarGraph;
+ 
