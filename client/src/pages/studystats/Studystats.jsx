@@ -115,39 +115,13 @@ const Studystats = () => {
               </h2>
               <div ref={calendarRef} className="relative">
                 <span className="input-wrapper">
-                  <input
-                    onClick={() => setShowCalendar(!showCalendar)}
-                    type="text"
-                    placeholder="Select Date Range"
-                    className="input input-sm h-9 focus:ring-indigo-600 focus-within:ring-indigo-600 focus-within:border-indigo-600 focus:border-indigo-600"
-                    readOnly={true}
-                    autoComplete="off"
-                    value={
-                      selectedDateRange.startDate && selectedDateRange.endDate
-                        ? `${selectedDateRange.startDate.format(
-                            "MMM DD, YYYY"
-                          )} ~ ${selectedDateRange.endDate.format(
-                            "MMM DD, YYYY"
-                          )}`
-                        : ""
-                    }
-                    style={{ paddingRight: "2rem" }}
-                  />
-                  <Calendar
-                    onClose={handleCalendarClose}
-                    onSelectDateRange={(startDate, endDate) =>
-                      setSelectedDateRange({ startDate, endDate })
-                    }
-                  />
+                 
                   <div className="input-suffix-end">
-                    <span className="close-btn text-base" role="button">
+                    {/* <span className="close-btn text-base" role="button">
                       <MdClose />
-                    </span>
+                    </span> */}
                     <Calendar
-                      onClose={handleCalendarClose}
-                      onSelectDateRange={(startDate, endDate) =>
-                        setSelectedDateRange({ startDate, endDate })
-                      }
+                      selectedMonth={selectedDateRange.startDate}
                     />
                   </div>
                 </span>

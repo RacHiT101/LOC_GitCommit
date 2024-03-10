@@ -2,66 +2,35 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
-const Calendar = ({ onClose, onSelectDateRange }) => {
+const Calendar = ({ selectedMonth }) => {
+  const [currentMonth, setCurrentMonth] = useState(dayjs(selectedMonth));
 
-  const [selectedDate, setSelectedDate] = useState(dayjs());
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
   const today = dayjs();
 
-  const handleMonthChange = (monthsToAdd) => {
-    setSelectedDate(selectedDate.add(monthsToAdd, "month"));
+  // Function to generate a random date in the past
+  const generateRandomPastDate = () => {
+    const randomPastDate = today.subtract(Math.floor(Math.random() * 365), "day");
+    return randomPastDate;
   };
 
-  const handleDateClick = (date) => {
-    const isBeforeToday =
-      date.isBefore(today, "day") || date.isSame(today, "day");
-    if (!selectedStartDate && isBeforeToday) {
-      setSelectedStartDate(date);
-      setSelectedEndDate(null);
-    } else if (selectedStartDate && isBeforeToday) {
-      if (!selectedEndDate || date.isBefore(selectedStartDate)) {
-        setSelectedEndDate(date);
-      } else {
-        setSelectedStartDate(date);
-        setSelectedEndDate(null);
-      }
+  // Function to generate an array of random past dates with green dots
+  const generateRandomPastDates = () => {
+    const randomDates = [];
+    for (let i = 0; i < 5; i++) {
+      randomDates.push(generateRandomPastDate());
     }
+    return randomDates;
   };
 
-  const handleSubmit = () => {
-    onSelectDateRange(selectedStartDate, selectedEndDate);
-    onClose();
-  };
-
-  const generateMonthMatrix = (date) => {
-    const startOfMonth = date.startOf("month").startOf("week");
-    const endOfMonth = date.endOf("month");
-
-    const matrix = [];
-    let currentRow = [];
-    let currentDate = startOfMonth;
-
-    while (
-      currentDate.isBefore(endOfMonth) ||
-      currentDate.isSame(endOfMonth, "day")
-    ) {
-      currentRow.push(currentDate.clone());
-      if (currentDate.day() === 6 || currentDate.isSame(endOfMonth, "day")) {
-        matrix.push(currentRow);
-        currentRow = [];
-      }
-      currentDate = currentDate.add(1, "day");
-    }
-
-    return matrix;
+  const handleMonthChange = (increment) => {
+    setCurrentMonth(currentMonth.add(increment, "month"));
   };
 
   const renderCalendar = () => {
-    const monthMatrix = generateMonthMatrix(selectedDate);
+    const randomDates = generateRandomPastDates();
 
     return (
-      <div>
+      <div className="border border-red-700">
         <div className="flex justify-between items-center mb-4">
           <button
             className={`text-gray-600 hover:text-gray-800 `}
@@ -70,7 +39,7 @@ const Calendar = ({ onClose, onSelectDateRange }) => {
             <BsChevronLeft />
           </button>
           <h3 className="text-xl font-semibold">
-            {selectedDate.format("MMMM YYYY")}
+            {currentMonth.format("MMMM YYYY")}
           </h3>
           <button
             className={`text-gray-600 hover:text-gray-800 `}
@@ -85,53 +54,37 @@ const Calendar = ({ onClose, onSelectDateRange }) => {
               {day}
             </div>
           ))}
-          {monthMatrix.map((week, weekIndex) =>
-            week.map((date) => {
-              const isCurrentMonth = date.month() === selectedDate.month();
-              const isToday = date.isSame(today, "day");
-              const isBeforeToday = date.isBefore(today, "day");
-              const isTodayInCurrentMonth = isToday && isCurrentMonth;
-              const isCurrentYear = date.year() === today.year();
-              const isLastDayOfMonth = date.isSame(date.endOf("month"), "day"); // Add this line
+          {[...Array(currentMonth.startOf("month").startOf("week").daysInMonth()).keys()].map((index) => {
+            const date = currentMonth
+              .startOf("month")
+              .startOf("week")
+              .date(index + 1);
+            const isToday = date.isSame(today, "day");
+            const isPastDate = date.isBefore(today, "day");
+            const isCompleted = randomDates.some((randomDate) =>
+              date.isSame(randomDate, "day")
+            );
 
-              return (
-                <div
-                  key={date.format("YYYY-MM-DD")}
-                  className={`rounded-full text-center p-2 cursor-pointer  ${
-                    date.isSame(selectedDate, "day")
-                      ? ""
-                      : isTodayInCurrentMonth
-                      ? "bg-yellow-200"
-                      : isBeforeToday && !isCurrentMonth
-                      ? "dark:text-gray-700 dark:border-gray-700 text-gray-200 border-white"
-                      : ""
-                  }${
-                    (selectedStartDate &&
-                      selectedEndDate &&
-                      date.isAfter(selectedStartDate, "day") &&
-                      date.isBefore(selectedEndDate, "day")) ||
-                    date.isSame(selectedStartDate, "day") ||
-                    date.isSame(selectedEndDate, "day")
-                      ? "bg-blue-200 text-gray-600"
-                      : ""
-                  } ${date.isSame(selectedDate, "day") ? "" : ""} 
-                  ${isToday && !isLastDayOfMonth ? "bg-gray-200" : ""}`}
-                  onClick={() => handleDateClick(date)}
-                >
-                  {date.format("D")}
-                </div>
-              );
-            })
-          )}
-        </div>
-        <div className="mt-4 flex justify-center">
-          <button
-            className={`px-4 py-2 rounded-md bg-blue-500 text-white`}
-            onClick={handleSubmit}
-            // disabled={!selectedStartDate || !selectedEndDate}
-          >
-            OK
-          </button>
+            // Logic to check streak (minimum 5 per week)
+            const streak = randomDates.filter((randomDate) =>
+              date.isAfter(randomDate.startOf("week")) &&
+              date.isBefore(randomDate.endOf("week"))
+            ).length >= 5;
+
+            return (
+              <div
+                key={index}
+                className={`relative rounded-full text-center p-2 cursor-pointer ${
+                  isToday ? "bg-yellow-200" : streak ? "bg-green-200" : ""
+                }`}
+              >
+                {date.format("D")}
+                {isCompleted && (
+                  <span className="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full"></span>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     );
@@ -141,8 +94,7 @@ const Calendar = ({ onClose, onSelectDateRange }) => {
     <>
       <div
         className={`absolute w-80 p-3 top-12 left-0 shadow-lg border ${
-          
-             "bg-white border-gray-300"
+          "text-white border-gray-300"
         }`}
         style={{
           transform: "translate(829.6px, 78.4px);",
