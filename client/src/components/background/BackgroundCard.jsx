@@ -15,7 +15,7 @@ export default function BackgroundCard({
         cursor: isSelectable ? "pointer" : "default",
 
         "&:hover": {
-          backgroundColor: isSelectable ? "#401f6a" : "transparent",
+          backgroundColor: isSelectable ? "#1E143D" : "transparent",
           opacity: isSelectable ? 0.5 : 1,
         },
       }}

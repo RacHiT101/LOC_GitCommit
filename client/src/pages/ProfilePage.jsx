@@ -3,23 +3,17 @@ import Page from "../containers/Page.jsx";
 import React, { useEffect, useState } from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
 import AssetPanel from "../profile/assets/AssetPanel.jsx"; //
-import moneyIcon from "../assets/asset-money-icon.svg";//
-import xpIcon from "../assets/asset-xp-icon.svg"; //
+import moneyIcon from "../assets/asset-money-icon.png";//
+import xpIcon from "../assets/asset-xp-icon.png"; //
 import AssetLabel from "../components/profile/assets/AssetLabel.jsx"; //
-import ModifiableTextField from "../components/common/ModifiableTextField.jsx"; //
-import { useAuth } from "../providers/AuthProvider.jsx";//d
-import { useFetch } from "../hooks/useFetch.js"; //d
-import ProgressLoading from "../components/common/ProgressLoading.jsx"; //done
-import { useMutation } from "../hooks/useMutation.js"; //done 
-import { HTTP_METHOD } from "../hooks/http-methods.js"; //done 
-import FriendRequestItem from "../components/friend/FriendRequestItem.jsx";  //dpne 
-import SelectProfileModal from "../components/modals/SelectProfileModal.jsx"; //done 
-
-/**
- * The public room page contains the user's profile image, coins, experience, username, and the
- * friend request that has not been accepted or rejected. It also shows the background, music,
- * and profile images that the user has.
- */
+import ModifiableTextField from "../components/common/ModifiableTextField.jsx";
+import { useAuth } from "../providers/AuthProvider.jsx";
+import { useFetch } from "../hooks/useFetch.js";
+import ProgressLoading from "../components/common/ProgressLoading.jsx"; 
+import { useMutation } from "../hooks/useMutation.js"; 
+import { HTTP_METHOD } from "../hooks/http-methods.js"; 
+import FriendRequestItem from "../components/friend/FriendRequestItem.jsx"; 
+import SelectProfileModal from "../components/modals/SelectProfileModal.jsx"; 
 
 const ProfilePage = () => {
   const { getCustomUser } = useAuth();
@@ -104,7 +98,7 @@ const ProfilePage = () => {
                   right: 0,
                   bottom: 0,
                   cursor: "pointer",
-                  backgroundColor: "rgba(0, 0, 0, 0.6)",
+                  // backgroundColor: "rgba(0, 0, 0, 0.6)",
                   fontWeight: 600,
                   fontSize: "1.5rem",
                   color: "#fff",
@@ -126,9 +120,12 @@ const ProfilePage = () => {
             mt={4}
             width={{ xs: "90%", sm: "78%", md: "100%" }}
             height={{ xs: "40%", sm: "20%", md: "10%" }}
+            sx={{
+              backgroundColor: "#1E143D",
+            }}
           >
             <ModifiableTextField
-              label={"username"}
+              // label={"username"}
               value={username}
               onSubmitChange={async (value) => {
                 setUserName(value);
@@ -138,6 +135,9 @@ const ProfilePage = () => {
                     name: value,
                   },
                 });
+              }}
+              sx={{
+                backgroundColor: "#1E143D",
               }}
             />
           </Box>
@@ -150,12 +150,12 @@ const ProfilePage = () => {
             display={"flex"}
             flexDirection={"column"}
             sx={{
-              backgroundColor: "#401f6a",
+              backgroundColor: "#1E143D",
             }}
           >
-            <Typography variant={"h6"} color={"#fff"}>
+            {/* <Typography variant={"h6"} color={"#fff"}>
               Friend Request
-            </Typography>
+            </Typography> */}
             <Box
               width={"100%"}
               height={"90%"}
@@ -211,6 +211,7 @@ const ProfilePage = () => {
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
+          
         >
           {profileImageLoading || musicLoading || backgroundLoading ? (
             <ProgressLoading />

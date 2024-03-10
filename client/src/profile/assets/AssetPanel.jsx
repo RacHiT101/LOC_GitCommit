@@ -1,7 +1,9 @@
 import { Box, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import AssetTypeButton from "./AssetTypeButton.jsx";
-// import BackgroundGrid from "../../background/BackgroundGrid.jsx";
+import BackgroundSelectorGrid from "../../components/background/BackgroundSelectorGrid.jsx";
+import MusicList from "../../components/profile/assets/MusicList.jsx";
+import ProfileGrid from "../../components/profile/ProfileGrid.jsx";
 // import MusicList from "./MusicList.jsx";
 // import ProfileGrid from "../ProfileGrid.jsx";
 
@@ -58,18 +60,18 @@ const AssetPanel = ({ backgrounds, musics, profilePhotos }) => {
         width={"100%"}
         height={"85%"}
         sx={{
-          backgroundColor: "#401f6a",
+          backgroundColor: "#1E143D",
           borderRadius: "0.7vw",
           overflowY: "auto",
         }}
       >
-        {/* {value === 0 ? (
-          <BackgroundGrid images={backgrounds} />
+        {value === 0 ? (
+          <BackgroundSelectorGrid images={backgrounds} />
         ) : value === 1 ? (
           <MusicList musics={musics} />
         ) : (
           <ProfileGrid images={profilePhotos} />
-        )} */}
+        )}
       </Box>
     </Stack>
   );

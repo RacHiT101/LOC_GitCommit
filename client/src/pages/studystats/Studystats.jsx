@@ -21,6 +21,8 @@ const Studystats = () => {
     endDate: dayjs().add(3, "month"),
   });
 
+  console.log(selectedDateRange.startDate);
+
   const handleButtonClick = (buttonType) => {
     setActiveButton(buttonType);
   };
@@ -98,7 +100,7 @@ const Studystats = () => {
               </div>
               <h2 className="text-[#676f8a] px-5">
                 So far this week, you have studied:
-                <span className="text-[#22ab57]"> 2 minutes</span>
+                <span className="text-[#22ab57]"> 7 minutes</span>
               </h2>
               <Bar className="py-5" />
             </div>
@@ -111,23 +113,10 @@ const Studystats = () => {
               </div>
               <h2 className="text-[#676f8a] px-5">
                 You are currently on a
-                <span className="text-[#22ab57]"> 0 day streak</span>
+                <span className="text-[#22ab57]"> 25 day streak</span>
               </h2>
               <div ref={calendarRef} className="relative">
-                <span className="input-wrapper">
-                 
-                  <div className="input-suffix-end">
-                    {/* <span className="close-btn text-base" role="button">
-                      <MdClose />
-                    </span> */}
-                    <Calendar
-                      selectedMonth={selectedDateRange.startDate}
-                    />
-                  </div>
-                </span>
-                {/* {showCalendar && (
-                
-              )} */}
+                <Calendar selectedMonth={selectedDateRange.startDate} />
               </div>
             </div>
           </div>

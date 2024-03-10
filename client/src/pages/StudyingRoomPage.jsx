@@ -490,7 +490,7 @@ const StudyingRoomPage = () => {
         {/* SET TIMER*/}
         <Box sx={{ display: "flex", alignItems: "center" }}>
           {showTimer ? (
-            <Timer duration={60 * 25} onFinish={timerFinishHandler} />
+            <Timer duration={60 * 1} onFinish={timerFinishHandler} />
           ) : (
             <Button
               onClick={setTimerHandler}

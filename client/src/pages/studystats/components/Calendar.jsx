@@ -6,10 +6,14 @@ const Calendar = ({ selectedMonth }) => {
   const [currentMonth, setCurrentMonth] = useState(dayjs(selectedMonth));
 
   const today = dayjs();
+  console.log(today);
 
   // Function to generate a random date in the past
   const generateRandomPastDate = () => {
-    const randomPastDate = today.subtract(Math.floor(Math.random() * 365), "day");
+    const randomPastDate = today.subtract(
+      Math.floor(Math.random() * 365),
+      "day"
+    );
     return randomPastDate;
   };
 
@@ -27,10 +31,13 @@ const Calendar = ({ selectedMonth }) => {
   };
 
   const renderCalendar = () => {
+    const lastMonth = dayjs().subtract(1, "month");
     const randomDates = generateRandomPastDates();
-
+    const today = dayjs();
+    const seventeenDaysAgo = dayjs().subtract(25, "days");
+  
     return (
-      <div className="border border-red-700">
+      <div className="">
         <div className="flex justify-between items-center mb-4">
           <button
             className={`text-gray-600 hover:text-gray-800 `}
@@ -60,28 +67,21 @@ const Calendar = ({ selectedMonth }) => {
               .startOf("week")
               .date(index + 1);
             const isToday = date.isSame(today, "day");
-            const isPastDate = date.isBefore(today, "day");
-            const isCompleted = randomDates.some((randomDate) =>
-              date.isSame(randomDate, "day")
-            );
-
-            // Logic to check streak (minimum 5 per week)
-            const streak = randomDates.filter((randomDate) =>
-              date.isAfter(randomDate.startOf("week")) &&
-              date.isBefore(randomDate.endOf("week"))
-            ).length >= 5;
-
+            const isLastMonth = date.isSame(lastMonth, "month");
+            const isWithinRange = date.isAfter(seventeenDaysAgo) && date.isBefore(today);
+  
+            // Logic to check if the date has a dot
+            const hasDot = isLastMonth && isWithinRange;
+  
             return (
               <div
                 key={index}
                 className={`relative rounded-full text-center p-2 cursor-pointer ${
-                  isToday ? "bg-yellow-200" : streak ? "bg-green-200" : ""
+                  isToday ? "bg-yellow-200" : ""
                 }`}
               >
+                <span className={hasDot ? "absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full" : ""}></span>
                 {date.format("D")}
-                {isCompleted && (
-                  <span className="absolute top-0 right-0 w-2 h-2 bg-green-500 rounded-full"></span>
-                )}
               </div>
             );
           })}
@@ -89,13 +89,12 @@ const Calendar = ({ selectedMonth }) => {
       </div>
     );
   };
+  
 
   return (
     <>
       <div
-        className={`absolute w-80 p-3 top-12 left-0 shadow-lg border ${
-          "text-white border-gray-300"
-        }`}
+        className={`absolute w-full p-3 top-12 left-0 shadow-lg  ${"text-white border-gray-300"}`}
         style={{
           transform: "translate(829.6px, 78.4px);",
           zIndex: "40",
