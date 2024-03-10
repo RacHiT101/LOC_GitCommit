@@ -3,8 +3,8 @@ import React from "react";
 import { Box } from "@mui/material";
 // import FriendContainer from "../components/friend/FriendContainer.jsx";
 // import AssetLabel from "../components/profile/assets/AssetLabel.jsx";
-import AssetXPIcon from "../assets/asset-xp-icon.svg";
-import AssetMoneyIcon from "../assets/asset-money-icon.svg";
+import AssetXPIcon from "../assets/asset-xp-icon.png";
+import AssetMoneyIcon from "../assets/asset-money-icon.png";
 import PublicRoomsContainer from "../components/room/PublicRoomsContainer.jsx";
 import { useAuth } from "../providers/AuthProvider.jsx";
 import AssetLabel from "../profile/assets/AssetLabel.jsx";
@@ -32,7 +32,7 @@ const PublicRoomPage = () => {
 
         <Box className="flex flex-col mt-10 ml-20 mr-20 w-full space-y-10">
           <Box
-            className="w-96 h-8 flex flex-row justify-end space-x-6 ml-auto"
+            className="w-80 h-12 flex flex-row justify-end space-x-6 ml-auto"
             sx={{ minWidth: 300 }}
           >
             <AssetLabel

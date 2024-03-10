@@ -47,6 +47,11 @@ const ChatModal = ({
     chatRef.current?.scrollTo(0, chatRef.current?.scrollHeight);
   }, [displayChatHistory]);
 
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    setAttachedFile(file);
+  };
+
   return (
     <div className="rounded-lg bg-white flex flex-col overflow-hidden h-full">
       {/* HEADER */}

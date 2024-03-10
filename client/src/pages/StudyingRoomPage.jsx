@@ -24,11 +24,11 @@ import playButtonStyle from "../components/common/MusicButtonStyle.js";
 import VolumeUpRounded from "@mui/icons-material/VolumeUpRounded";
 import VolumeDownRounded from "@mui/icons-material/VolumeDownRounded";
 import VideoApp from "../VideoApp.jsx";
+import TextEditor from "../components/room/TextEditor.jsx";
 
 const sortByOptions = ["name", "experience"];
 
 const StudyingRoomPage = () => {
-  // array of {senderId, profileImageUrl, content}
   const [chatHistory, setChatHistory] = useState([]);
   const [roomUsers, setRoomUsers] = useState([]);
   const [sortBy, setSortBy] = useState("name");
@@ -403,6 +403,9 @@ const StudyingRoomPage = () => {
                 onSend={chatHandler}
                 onChangeTargetUser={(user) => handleChangeTargetUser(user)}
               />
+            </Box>
+            <Box>
+              <TextEditor />
             </Box>
           </Box>
         </Box>

@@ -1,24 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { useCallback, useRef, useState } from "react";
-import {
-  InputLabel,
-  Box,
-  FormHelperText,
-  OutlinedInput,
-  InputAdornment,
-  IconButton,
-  TextField,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  FormControl,
-  Typography,
-} from "@mui/material";
-import { LoadingButton } from "@mui/lab";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline"; // Assuming you have EyeIcon and EyeOffIcon components
 import ThirdPartyLogin from "./ThirdPartyLogin.jsx";
 import { useFetchUsernameSuggestion } from "../../api/user-api.js";
 
@@ -46,14 +27,15 @@ const SignupForm = ({ onSubmit }) => {
           : baseName.current
       );
       setUsername(username);
-    } catch (e) { /* empty */ } finally {
+    } catch (e) {
+      /* empty */
+    } finally {
       setGettingSuggestion(false);
     }
   }, [fetchUsernameSuggestion]);
 
   const handleSubmit = async () => {
     const values = { username, email, password, categories };
-    console.log("SignUpForm:" ,categories);
     if (Object.values(values).some((v) => v.length === 0)) {
       setError("Please complete all fields");
       return;
@@ -83,140 +65,135 @@ const SignupForm = ({ onSubmit }) => {
     if (event.target.checked) {
       setCategories([...categories, subject]);
     } else {
-      setCategories(categories.filter(item => item !== subject));
+      setCategories(categories.filter((item) => item !== subject));
     }
   };
 
-  console.log(categories);
-
   return (
-    <Box>
-      <Box sx={{ mb: { xs: 1, md: 2 } }}>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+    <div className="font-Poppins">
+      <div className="space-x-2 my-1">
+        <label htmlFor="username" className="block font-semibold">
+          Username
+        </label>
+        <button
+          onClick={getSuggestedUsername}
+          className="text-sm text-[#10002b] text-right right-0"
+          disabled={gettingSuggestion}
         >
-          <InputLabel>Username</InputLabel>
-          <LoadingButton
-            loading={gettingSuggestion}
-            variant={"text"}
-            onClick={getSuggestedUsername}
-          >
-            Get random name
-          </LoadingButton>
-        </Box>
-        <TextField
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            baseName.current = e.target.value;
-          }}
-        />
-      </Box>
-      <Box sx={{ mb: { xs: 1, md: 2 } }}>
-        <InputLabel>Email</InputLabel>
-        <TextField value={email} onChange={(e) => setEmail(e.target.value)} />
-      </Box>
-      <Box sx={{ mb: { xs: 1, md: 2 } }}>
-        <InputLabel>Password</InputLabel>
-        <OutlinedInput
-          name={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type={showPassword ? "text" : "password"}
-          endAdornment={
-            <InputAdornment position={"end"}>
-              <IconButton onClick={() => setShowPassword((prev) => !prev)}>
-                {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-      </Box>
-      <div>
-        <Box sx={{ width: 400, bgcolor: 'background.paper', p: 2 }}>
-          <Typography variant="h6" fontWeight="bold" gutterBottom>
-            What's your subject of interest?
-          </Typography>
-          <FormControl component="fieldset">
-            <FormGroup row>
-              {/* <Box sx={{ display: 'flex', flexDirection: 'column' }}> */}
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Mathematics"
-                  onChange={handleCheckboxChange("Mathematics")}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="History"
-                  onChange={handleCheckboxChange("History")}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Geography"
-                  onChange={handleCheckboxChange("Geography")}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Science"
-                  onChange={handleCheckboxChange("Science")}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Psychology"
-                  onChange={handleCheckboxChange("Psychology")}
-                />
-                <FormControlLabel
-                  control={<Checkbox />}
-                  label="Literature"
-                  onChange={handleCheckboxChange("English Literature")}
-                />
-              {/* </Box> */}
-            </FormGroup>
-          </FormControl>
-        </Box>
-      <Box>
-        
-        
-      </Box>
-    </div>
-      <Box>
-        <FormHelperText>{error}</FormHelperText>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: {
-            xs: "column",
-            md: "row-reverse",
-          },
-          justifyContent: "space-between",
-          alignItems: {
-            xs: "flex-end",
-            md: "center",
-          },
+          Get random name
+        </button>
+      </div>
+      <input
+        id="username"
+        type="text"
+        value={username}
+        onChange={(e) => {
+          setUsername(e.target.value);
+          baseName.current = e.target.value;
         }}
-      >
-        <LoadingButton
+        className="w-full px-3 py-2 border rounded"
+      />
+      <div>
+        <label htmlFor="email" className="block font-semibold">
+          Email
+        </label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-3 py-2 border rounded"
+        />
+      </div>
+      <div>
+        <label htmlFor="password" className="block font-semibold">
+          Password
+        </label>
+        <div className="relative">
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-3 py-2 border rounded"
+          />
+          <button
+            className="absolute top-0 right-0 px-2 py-1"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+          </button>
+        </div>
+      </div>
+      <div className="space-y-2">
+        <p className="font-semibold">What's your subject of interest?</p>
+        <div className="space-y-2 grid grid-cols-2">
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={categories.includes("Mathematics")}
+              onChange={handleCheckboxChange("Mathematics")}
+            />
+            Mathematics
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={categories.includes("History")}
+              onChange={handleCheckboxChange("History")}
+            />
+            History
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={categories.includes("Geography")}
+              onChange={handleCheckboxChange("Geography")}
+            />
+            Geography
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={categories.includes("Science")}
+              onChange={handleCheckboxChange("Science")}
+            />
+            Science
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={categories.includes("Psychology")}
+              onChange={handleCheckboxChange("Psychology")}
+            />
+            Psychology
+          </label>
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              checked={categories.includes("English Literature")}
+              onChange={handleCheckboxChange("English Literature")}
+            />
+            Literature
+          </label>
+        </div>
+      </div>
+      {error && <p className="text-red-500">{error}</p>}
+      <div className="flex justify-between items-center my-4 space-x-4">
+        <button
           onClick={handleSubmit}
-          loading={signingUp}
-          variant={"contained"}
-          sx={{
-            width: { xs: "100%", md: "auto" },
-            mb: 2,
-          }}
+          className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+          disabled={signingUp}
         >
           Submit
-        </LoadingButton>
+        </button>
         <ThirdPartyLogin
           onError={() =>
             setError("Your email exists with different credential.")
           }
         />
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

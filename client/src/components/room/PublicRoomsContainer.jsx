@@ -33,13 +33,13 @@ const PublicRoomsContainer = () => {
       <div className="justify-between flex">
         <div className="flex gap-4">
           <div
-            className={`bg-purple-700 p-3 rounded-lg ${selectedRoom === "AllRooms" ? 'bg-opacity-50' : ''}`}
+            className={`bg-purple-700 p-3 cursor-pointer text-white rounded-lg ${selectedRoom === "AllRooms" ? 'bg-opacity-50' : ''}`}
             onClick={() => setSelectedRoom("AllRooms")}
           >
             All Rooms
           </div>
           <div
-            className={`bg-purple-700 p-3 rounded-lg ${selectedRoom === "MatchedRooms" ? 'bg-opacity-50' : ''}`}
+            className={`bg-purple-700 p-3 cursor-pointer text-white rounded-lg ${selectedRoom === "MatchedRooms" ? 'bg-opacity-50' : ''}`}
             onClick={() => setSelectedRoom("MatchedRooms")}
           >
             Matched Rooms
