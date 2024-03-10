@@ -1,12 +1,9 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const BarGraph = ({taskExpenses}) => {
-  //   const mode = useSelector((state) => state.config.mode);
-  const categories = ["Flooring", "Painting", "Plumbing", "Wiring", "Furniture"];
-
+const BarGraph = ({ taskExpenses, categories }) => {
   // Fixed values for Expected Investment
-  const expectedInvestment = [660, 440, 550 , 570, 560];
+  const expectedInvestment = [0]; // Adjust according to your categories
 
   const series = [
     {
@@ -15,9 +12,9 @@ const BarGraph = ({taskExpenses}) => {
     },
     {
       name: "Actual Invested",
+      data: taskExpenses,
     },
   ];
-
 
   const options = {
     chart: {
@@ -27,9 +24,6 @@ const BarGraph = ({taskExpenses}) => {
         show: false,
       },
     },
-    // theme: {
-    //   mode: mode === "light" ? 'light' : 'dark',
-    // },
     plotOptions: {
       bar: {
         horizontal: false,
@@ -46,8 +40,7 @@ const BarGraph = ({taskExpenses}) => {
       colors: ["transparent"],
     },
     xaxis: {
-      
-      categories: ["Flooring", "Painting", "Plumbing", "Wiring", "Furniture"],
+      categories: categories,
     },
     yaxis: {
       title: {
@@ -55,7 +48,6 @@ const BarGraph = ({taskExpenses}) => {
       },
     },
     colors: ["#868CFF", "#432CF3"],
-
     tooltip: {
       y: {
         formatter: function (val) {

@@ -25,6 +25,7 @@ const Scheduling = () => {
       }))
     );
   };
+  console.log(subjectDetails);
 
   const handleSubjectNameChange = (index, event) => {
     const newSubjectDetails = [...subjectDetails];
