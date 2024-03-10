@@ -76,7 +76,7 @@ const ResultPage = ({
             <div className="grid grid-cols-1 gap-2 mx-5 py-5">
               {Array.from({ length: subject.numTopics }, (_, topicIndex) => {
                 const topicId = `topic_${subjectIndex}_${topicIndex}`;
-                const hours = hoursPerTopic; 
+                const hours = hoursPerTopic; // Use the same hours per topic for all topics
                 return (
                   <div key={topicIndex} className="flex items-center">
                     <input
