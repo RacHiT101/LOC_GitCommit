@@ -39,7 +39,7 @@ const ResultPage = ({
   return (
     <div className="w-full p-8">
       <h1 className="text-white text-3xl text-center">SCHEDULING SYSTEM</h1>
-      <div className="flex items-center gap-5 bg-purple-900 p-3 rounded-lg my-4">
+      <div className="flex items-center gap-5 font-bold bg- p-3 rounded-lg my-4">
         <h4 className="text-xl font-semibold text-white">Total Hours</h4>
         <h1 className="text-xl text-white">{totalHours}</h1>
       </div>
@@ -56,8 +56,8 @@ const ResultPage = ({
             progress={progress}
           />
         </div>
-        <div className="bg-[#1e143d] rounded-lg">
-          <PieGraph taskExpenses={NumTopics} categories={NameArray} />
+        <div className="bg-[#1e143d] rounded-lg items-center justify-center flex w-full h-full ">
+          <PieGraph taskExpenses={NumTopics} categories={NameArray} className=""/>
         </div>
       </div>
 
