@@ -20,7 +20,8 @@ const BackgroundProductCard = ({ value, productName, image, productId }) => {
       sx={{
         maxWidth: 350,
         borderRadius: 3,
-        background: "rgba(255, 255, 255, .5)",
+        background: `linear-gradient(to right, rgba(50, 0, 60, 0.7), rgba(0, 0, 20, 0.7))`,
+          boxShadow: "3px 3px 2px 1px rgba(255,255,255,0.2)",
         backdropFilter: "blur(5px)",
         ":hover": {
           boxShadow: 20, // theme.shadows[20]
@@ -34,6 +35,7 @@ const BackgroundProductCard = ({ value, productName, image, productId }) => {
             gutterBottom
             variant="h4"
             fontWeight="bold"
+            className="text-white"
             component="div"
           >
             {productName}
@@ -46,6 +48,7 @@ const BackgroundProductCard = ({ value, productName, image, productId }) => {
               gutterBottom
               variant="h5"
               fontWeight="bold"
+              className="text-white"
               component="div"
             >
               {value}
