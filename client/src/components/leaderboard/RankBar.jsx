@@ -22,7 +22,7 @@ const RankBar = ({
         width: "100%",
         borderRadius: "10px",
         background: `linear-gradient(to right, rgba(50, 0, 60, 0.7), rgba(0, 0, 20, 0.7))`,
-          boxShadow: "3px 3px 2px 1px rgba(255,255,255,0.2)",
+        boxShadow: "3px 3px 2px 1px rgba(255,255,255,0.2)",
         overflow: "hidden",
       }}
     >
@@ -103,7 +103,7 @@ const RankBar = ({
           flex: 1,
         }}
       >
-      {hours?.toLocaleString()}
+        {hours?.toLocaleString()}
       </Typography>
     </Box>
   );

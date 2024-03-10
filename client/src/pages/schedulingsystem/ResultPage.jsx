@@ -1,9 +1,7 @@
-// ScheduleResultPage.js
-
-import { Button } from "@mui/base";
 import React from "react";
 import BarGraph from "./components/BarGraph";
 import PieGraph from "./components/PieGraph";
+import { Button } from "@mui/base";
 
 const ResultPage = ({
   daysLeft,
@@ -12,52 +10,47 @@ const ResultPage = ({
   scheduling,
   setScheduling,
 }) => {
-  console.log(subjectDetails);
   const NameArray = subjectDetails.map((obj) => obj.name);
   const NumTopics = subjectDetails.map((obj) => obj.numTopics);
-  console.log(NameArray);
-  console.log(NumTopics);
 
-  // Render the input values here
   return (
-    <div className="w-full">
-      <h1 className="text-white text-3xl flex text-center">
-        SCHEDULING SYSTEM
-      </h1>
-      <div className="text-white flex items-center gap-5 bg-[#1e143d]">
-        <h4 className="text-xl font-semibold ">Total Hours</h4>
-        <h1 className="text-xl">{hoursLeft}</h1>
+    <div className="w-full p-8">
+      <h1 className="text-white text-3xl text-center">SCHEDULING SYSTEM</h1>
+      <div className="flex items-center gap-5 bg-purple-900 p-3 rounded-lg my-4">
+        <h4 className="text-xl font-semibold text-white">Total Hours</h4>
+        <h1 className="text-xl text-white">{hoursLeft}</h1>
       </div>
-      <div className="text-white flex">
-        <p>Days Left: {daysLeft}</p>
+      <div className="text-white flex mb-4">
+        <p className="mr-4">Days Left: {daysLeft}</p>
         <p>Hours Left: {hoursLeft}</p>
       </div>
-      <p>Subjects:</p>
-      <div className="grid grid-cols-3 gap-5 ">
-        <div className=" col-span-2 bg-[#1e143d] mx-5 rounded-lg">
+      <p className="text-white font-semibold my-2 text-xl">Subjects:</p>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+        <div className="bg-purple-900 rounded-lg col-span-2 ">
           <BarGraph taskExpenses={NumTopics} categories={NameArray} />
         </div>
-        <div className=" mx-auto bg-[#1e143d] rounded-lg  ">
+        <div className="bg-purple-900 rounded-lg">
           <PieGraph taskExpenses={NumTopics} categories={NameArray} />
         </div>
       </div>
 
-      <div className="bg-[#1e143d] mx-10 rounded-lg text-white">
-        <h1 className="text-2xl">Maths</h1>
-        <h2>Topic 1</h2>
-        <h2>Topic 2</h2>
-        <h2>Topic 3</h2>
+      <div className="bg-purple-900 rounded-lg p-4 mb-8">
+        <h1 className="text-2xl text-white">Maths</h1>
+        <ul className="text-white">
+          <li>Topic 1</li>
+          <li>Topic 2</li>
+          <li>Topic 3</li>
+        </ul>
       </div>
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-1"></div>
 
-      <Button onClick={() => setScheduling(false)}>Add Schedule</Button>
-      <ul>
-        {/* {subjects.map((subject, index) => (
-          <li key={index}>
-            Subject {index + 1}: {subject.name} - {subject.numTopics} topics
-          </li>
-        ))} */}
-      </ul>
+      <div className="flex justify-center">
+        <Button
+          onClick={() => setScheduling(false)}
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400"
+        >
+          Add Schedule
+        </Button>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Page from "../../containers/Page";
-import { useNavigate } from "react-router-dom";
 import ResultPage from "./ResultPage";
 
 const Scheduling = () => {
@@ -10,11 +9,6 @@ const Scheduling = () => {
   const [hoursLeft, setHoursLeft] = useState(0);
   const [scheduling, setScheduling] = useState(false);
 
-  console.log(daysLeft);
-  console.log(hoursLeft);
-  console.log(subjectDetails)
-
-  const navigate = useNavigate();
   const handleNumSubjectsChange = (event) => {
     const num = parseInt(event.target.value);
     setNumSubjects(num);
@@ -25,7 +19,6 @@ const Scheduling = () => {
       }))
     );
   };
-  console.log(subjectDetails);
 
   const handleSubjectNameChange = (index, event) => {
     const newSubjectDetails = [...subjectDetails];
@@ -40,89 +33,100 @@ const Scheduling = () => {
   };
 
   const subjectQuestions = subjectDetails.map((subject, index) => (
-    <div key={index}>
-      <h2>Subject {index + 1}</h2>
-      <div className="flex gap-20">
+    <div key={index} className="mt-6 ">
+     
+      <div className="flex flex-col gap-3">
+      <h2 className="text-white">Subject {index + 1}</h2>
         <label htmlFor={`subjectName${index}`} className="text-white">
-          What is Subject {index + 1} name?
+          What is the name of Subject {index + 1}?
         </label>
         <input
           type="text"
           id={`subjectName${index}`}
           value={subject.name}
           onChange={(event) => handleSubjectNameChange(index, event)}
+          className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
         />
       </div>
-      <div className="flex gap-9 mt-5">
+      <div className="flex flex-col gap-3 mt-3 ">
         <label htmlFor={`numTopics${index}`} className="text-white">
-          How many topics in Subject {index + 1}?
+          How many topics are there in Subject {index + 1}?
         </label>
         <input
           type="number"
           id={`numTopics${index}`}
           value={subject.numTopics}
           onChange={(event) => handleNumTopicsChange(index, event)}
+          className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
         />
       </div>
     </div>
   ));
+
   const handleSubmit = () => {
-    // Navigate to the new page and pass the input values as props
-    // navigate("/schedule-result", {
-    //   state: {
-    //     daysLeft: daysLeft,
-    //     hoursLeft: hoursLeft,
-    //     subjects: subjectDetails,
-    //   },
-    // });
     setScheduling(true);
   };
+
   return (
-    <>
-      <Page title={"Public Room"}>
-        {scheduling ? (
-          <ResultPage
-            daysLeft={daysLeft}
-            hoursLeft={hoursLeft}
-            subjectDetails={subjectDetails}
-            scheduling={scheduling}
-            setScheduling={setScheduling}
-          />
-        ) : (
-          <>
-            <div className="text-white">Scheduling System</div>
-            <div>
-              <h1 className="text-white">
-                Number Of Days you want a Schedule for?
-              </h1>
-              <input type="number" id="daysLeft" onChange={(e) => {setDaysLeft(e.target.value)}} />
+    <Page title={"Public Room"}>
+      {scheduling ? (
+        <ResultPage
+          daysLeft={daysLeft}
+          hoursLeft={hoursLeft}
+          subjectDetails={subjectDetails}
+          scheduling={scheduling}
+          setScheduling={setScheduling}
+        />
+      ) : (
+        <div className="flex justify-center items-center mx-auto h-screen bg-gradient-to-r from-[rgba(50, 0, 60, 0.7)] to-[rgba(0, 0, 20, 0.7)] shadow-xl">
+
+          <div className="p-6 rounded-md shadow-lg">
+            <h1 className="text-white text-2xl mb-6 font-bold">Scheduling System</h1>
+            <div className="mb-4">
+              <label htmlFor="daysLeft" className="text-white block">
+                Number of Days you want a Schedule for?
+              </label>
+              <input
+                type="number"
+                id="daysLeft"
+                onChange={(e) => setDaysLeft(e.target.value)}
+                className="p-2 border rounded-md"
+              />
             </div>
-            <div>
-              <h1 className="text-white">
-                Number Of Hours you can give in a day?
-              </h1>
-              <input type="number" id="hoursLeft" onChange={(e) => {setHoursLeft(e.target.value)}}/>
+            <div className="mb-4">
+              <label htmlFor="hoursLeft" className="text-white block">
+                Number of Hours you can give in a day?
+              </label>
+              <input
+                type="number"
+                id="hoursLeft"
+                onChange={(e) => setHoursLeft(e.target.value)}
+                className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
+              />
             </div>
-            <div>
-              <h1 className="text-white">How many subjects are there?</h1>
+            <div className="mb-4">
+              <label htmlFor="numSubjects" className="text-white block">
+                How many subjects are there?
+              </label>
               <input
                 type="number"
                 id="numSubjects"
                 value={numSubjects}
                 onChange={handleNumSubjectsChange}
+                className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
               />
             </div>
             {subjectQuestions}
             <button
               onClick={handleSubmit}
-              className="text-white bg-black p-2 mt-5 border-white border-3 rounded-lg"
+              className="mx-auto bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400"
             >
               Submit
             </button>
-          </>
-        )}
-      </Page>
-    </>
+          </div>
+        </div>
+      )}
+    </Page>
   );
 };
 
