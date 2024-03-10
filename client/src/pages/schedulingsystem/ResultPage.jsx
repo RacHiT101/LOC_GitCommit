@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import BarGraph from "./components/BarGraph";
 import PieGraph from "./components/PieGraph";
 import { Button } from "@mui/base";
@@ -12,13 +12,36 @@ const ResultPage = ({
 }) => {
   const NameArray = subjectDetails.map((obj) => obj.name);
   const NumTopics = subjectDetails.map((obj) => obj.numTopics);
+  console.log(NameArray);
+  console.log(NumTopics);
+  const totalHours = daysLeft * hoursLeft;
+  const hoursPerTopic = subjectDetails.map((subject) => {
+    // Calculate the total number of topics for the subject
+    const totalTopics = subject.numTopics;
+    // Calculate the hours per topic
+    return totalHours / totalTopics;
+  });
+
+  // State to keep track of progress for each subject
+  const [progress, setProgress] = useState(subjectDetails.map(() => 0));
+
+  // Function to handle checkbox change
+  const handleCheckboxChange = (subjectIndex, topicIndex, isChecked) => {
+    const newProgress = [...progress];
+    if (isChecked) {
+      newProgress[subjectIndex] += 1;
+    } else {
+      newProgress[subjectIndex] -= 1;
+    }
+    setProgress(newProgress);
+  };
 
   return (
     <div className="w-full p-8">
       <h1 className="text-white text-3xl text-center">SCHEDULING SYSTEM</h1>
       <div className="flex items-center gap-5 bg-purple-900 p-3 rounded-lg my-4">
         <h4 className="text-xl font-semibold text-white">Total Hours</h4>
-        <h1 className="text-xl text-white">{hoursLeft}</h1>
+        <h1 className="text-xl text-white">{totalHours}</h1>
       </div>
       <div className="text-white flex mb-4">
         <p className="mr-4">Days Left: {daysLeft}</p>
@@ -27,20 +50,50 @@ const ResultPage = ({
       <p className="text-white font-semibold my-2 text-xl">Subjects:</p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
         <div className="bg-purple-900 rounded-lg col-span-2 ">
-          <BarGraph taskExpenses={NumTopics} categories={NameArray} />
+          <BarGraph
+            taskExpenses={NumTopics}
+            categories={NameArray}
+            progress={progress}
+          />
         </div>
         <div className="bg-purple-900 rounded-lg">
           <PieGraph taskExpenses={NumTopics} categories={NameArray} />
         </div>
       </div>
 
-      <div className="bg-purple-900 rounded-lg p-4 mb-8">
-        <h1 className="text-2xl text-white">Maths</h1>
-        <ul className="text-white">
-          <li>Topic 1</li>
-          <li>Topic 2</li>
-          <li>Topic 3</li>
-        </ul>
+      <div className="grid grid-cols-3 gap-5 mx-10 mt-10">
+        {subjectDetails.map((subject, subjectIndex) => (
+          <div
+            key={subjectIndex}
+            className="bg-[#1e143d] rounded-lg text-white"
+          >
+            <h1 className="text-2xl text-center">{subject.name}</h1>
+            <div className="grid grid-cols-1 gap-2 mx-5 py-5">
+              {Array.from({ length: subject.numTopics }, (_, topicIndex) => {
+                const topicId = `topic_${subjectIndex}_${topicIndex}`;
+                const hours = hoursPerTopic[subjectIndex];
+                return (
+                  <div key={topicIndex} className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={topicId}
+                      onChange={(e) =>
+                        handleCheckboxChange(
+                          subjectIndex,
+                          topicIndex,
+                          e.target.checked
+                        )
+                      }
+                    />
+                    <label htmlFor={topicId} className="ml-2">
+                      Chapter {topicIndex + 1} - {hours} hrs
+                    </label>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="flex justify-center">
