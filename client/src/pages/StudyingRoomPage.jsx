@@ -323,14 +323,14 @@ const StudyingRoomPage = () => {
           }}
         >
           <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-              flex: 2,
-            }}
+            // sx={{
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   position: "relative",
+            //   flex: 2,
+            // }}
           >
-            <Box sx={{ position: "absolute", top: 1, left: 4 }}>
+            {/* <Box sx={{ position: "absolute", top: 1, left: 4 }}>
               <img src={logo} alt={""} />
             </Box>
             <Box sx={{ pl: 15, paddingY: 2 }}>
@@ -362,12 +362,12 @@ const StudyingRoomPage = () => {
                 position: "relative",
                 zIndex: 100,
               }}
-            >
+            > */}
               {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
               <Box container sx={{ width: "60%", height: "100%" }}>
                 <VideoApp />
               </Box>)}
-            </Box>
+            {/* </Box> */}
           </Box>
           <Box
             sx={{

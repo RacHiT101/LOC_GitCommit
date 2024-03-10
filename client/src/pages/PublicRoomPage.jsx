@@ -1,5 +1,4 @@
 import Page from "../containers/Page.jsx";
-import React from "react";
 import { Box } from "@mui/material";
 // import FriendContainer from "../components/friend/FriendContainer.jsx";
 // import AssetLabel from "../components/profile/assets/AssetLabel.jsx";
@@ -11,7 +10,7 @@ import AssetLabel from "../profile/assets/AssetLabel.jsx";
 import FriendContainer from "../components/friend/FriendContainer.jsx";
 
 const PublicRoomPage = () => {
-  const { getCustomUser, getCurrentUser } = useAuth();
+  const { getCustomUser } = useAuth();
 
   console.log(getCustomUser());
   // console.log(getCurrentUser());
