@@ -8,7 +8,8 @@ const router = Router({ mergeParams: true });
 const productTypes = ["background", "music", "profile-image"];
 
 router.post("/", async (req, res) => {
-  res.json(await userController.createUser(req.body.email, req.body.username));
+  console.log(req.body);
+  res.json(await userController.createUser(req.body.email, req.body.username, req.body.categories));
 });
 
 router.get("/", async (req, res) => {

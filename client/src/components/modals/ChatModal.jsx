@@ -31,10 +31,10 @@ const ChatModal = ({
       } else {
         return (
           receiverEmail !== "All Users" &&
-          ((senderId === getCustomUser()?._id &&
-            receiverId === (targetUser?.uid || targetUser?._id)) ||
-            (senderId === (targetUser?.uid || targetUser?._id) &&
-              receiverId === getCustomUser()?._id))
+          ((senderId === getCustomUser()?.id &&
+            receiverId === (targetUser?.uid || targetUser?.id)) ||
+            (senderId === (targetUser?.uid || targetUser?.id) &&
+              receiverId === getCustomUser()?.id))
         );
       }
     });
@@ -53,184 +53,97 @@ const ChatModal = ({
   };
 
   return (
-    <Box
-      sx={{
-        borderRadius: "10px",
-        display: "flex",
-        flexDirection: "column",
-        overflowY: "hidden",
-        height: "100%",
-      }}
-    >
+    <div className="rounded-lg bg-white flex flex-col overflow-hidden h-full">
       {/* HEADER */}
-      <Box sx={{ backgroundColor: "#C6C6C6", paddingX: 2, paddingY: 0.5 }}>
-        <Box
+      <div className=" px-4 py-2">
+        <div
           onClick={() => setShowUserList((prev) => !prev)}
           onBlur={() => setShowUserList(false)}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            position: "relative",
-            cursor: userList && "pointer",
-          }}
+          className="flex items-center relative cursor-pointer"
         >
-          <Typography variant={"h4"} sx={{ color: "#3D3A3A" }}>
+          <h4 className="text-gray-700 font-semibold">
             {targetUser?.name || targetUser?.username}
-          </Typography>
-          {userList && !showUserList && <KeyboardArrowDownIcon />}
-          {userList && showUserList && <KeyboardArrowUpIcon />}
+          </h4>
+          {userList && !showUserList && (
+            <KeyboardArrowDownIcon className="ml-2" />
+          )}
+          {userList && showUserList && <KeyboardArrowUpIcon className="ml-2" />}
           {userList && (
             <Fade in={showUserList} unmountOnExit>
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "100%",
-                  backgroundColor: "#400b71",
-                  borderRadius: "5px",
-                  width: "50%",
-                  zIndex: 100,
-                }}
-              >
-                <Box
-                  sx={{ borderBottom: "1px solid #58337A", m: 1, mb: 0, pb: 1 }}
-                >
-                  <Button
+              <div className="absolute top-full  rounded-md w-1/2 z-10">
+                <div className="border-b border-purple-800 m-1 mb-0 pb-1">
+                  <button
                     onClick={() =>
                       onChangeTargetUser({ username: "All Users" })
                     }
-                    sx={{
-                      backgroundColor: "#6b35a0",
-                      paddingY: 0.2,
-                      paddingX: 0.7,
-                      width: "100%",
-                    }}
+                    className="bg-purple-700 py-1 font-medium px-2 w-full"
                   >
                     Group Chat
-                  </Button>
-                </Box>
-                <Box>
-                  <List
-                    dense
-                    sx={{
-                      overflowY: "scroll",
-                      maxHeight: "200px",
-                      "&::-webkit-scrollbar": {
-                        width: "10px",
-                      },
-                      "&::-webkit-scrollbar-track": {
-                        backgroundColor: "rgba(0,0,0,0)",
-                      },
-                      "&::-webkit-scrollbar-thumb": {
-                        backgroundColor: "rgba(0,0,0,.5)",
-                      },
-                    }}
-                  >
+                  </button>
+                </div>
+                <div>
+                  <ul className="overflow-y-scroll max-h-32 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
                     {userList?.map((user) => (
-                      <ListItem
+                      <li
                         onClick={() => onChangeTargetUser(user)}
-                        key={`${Math.random()}`}
-                        sx={{
-                          paddingX: 1,
-                          paddingY: 0.3,
-                          "&:hover": {
-                            backgroundColor: "rgba(255,255,255,.1)",
-                          },
-                        }}
+                        key={user.id}
+                        className="px-2 py-1 hover:bg-gray-300"
                       >
-                        <ListItemText
-                          sx={{
-                            width: "auto",
-                            color: "white",
-                            fontWeight: user.hasUnread ? "bold" : "light",
-                            "& span": {
-                              whiteSpace: "nowrap",
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                            },
-                          }}
-                        >
+                        <span className="text-white font-bold">
                           {user?.username}
-                        </ListItemText>
-                      </ListItem>
+                        </span>
+                      </li>
                     ))}
-                  </List>
-                </Box>
-              </Box>
+                  </ul>
+                </div>
+              </div>
             </Fade>
           )}
-        </Box>
-      </Box>
+        </div>
+      </div>
 
       {/* CHAT HISTORY */}
-      <Box
-        sx={{
-          backgroundColor: "rgba(255,255,255,.5)",
-          flex: 1,
-          overflowY: "scroll",
-          "&::-webkit-scrollbar": {
-            width: "10px",
-          },
-          "&::-webkit-scrollbar-track": {
-            backgroundColor: "rgba(0,0,0,0)",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "rgba(255,255,255,.4)",
-          },
-        }}
+      <div
+        className=" bg-opacity-50 flex-1 overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100"
         ref={chatRef}
       >
         {displayChatHistory.map(({ senderId, profileImageUrl, content }) => (
-          <Box
+          <div
             key={`${+new Date()}${Math.random()}`}
-            sx={{
-              display: "flex",
-              alignItems: "flex-end",
-              flexDirection:
-                getCustomUser()._id !== senderId ? "row" : "row-reverse",
-              paddingY: 1,
-              "& .mui-image-wrapper": { m: 0 },
-            }}
+            className={`flex items-end ${
+              getCustomUser().id !== senderId ? "flex-row" : "flex-row-reverse"
+            } py-1 px-4`}
           >
-            <Box sx={{ borderRadius: "10000px", ml: 1 }}>
-              <Avatar
+            <div className="ml-1">
+              <img
                 src={`/src/assets/profiles/${profileImageUrl}`}
-                alt={""}
-                width={"100%"}
+                alt=""
+                className="w-full h-full rounded-full"
               />
-            </Box>
-            <Box
-              sx={{
-                ml: 1,
-                flex: 1,
-                display: "flex",
-                flexDirection:
-                  getCustomUser()._id !== senderId ? "row" : "row-reverse",
-                pr: getCustomUser()._id !== senderId ? 4 : 0,
-              }}
+            </div>
+            <div
+              className={`ml-1 flex flex-1 ${
+                getCustomUser().id !== senderId
+                  ? "flex-row"
+                  : "flex-row-reverse"
+              } ${getCustomUser().id !== senderId ? "pr-4" : ""}`}
             >
-              <Box
-                sx={{
-                  backgroundColor:
-                    getCustomUser()._id !== senderId ? "#7012d3" : "#CEC1DB",
-                  color: getCustomUser()._id !== senderId ? "white" : "black",
-                  p: 1,
-                  borderRadius: "5px",
-                }}
+              <div
+                className={`p-1 ${
+                  getCustomUser().id !== senderId
+                    ? "bg-purple-700 text-white"
+                    : "bg-gray-300 text-black"
+                } rounded-md`}
               >
-                <Typography
-                  noWrap={false}
-                  sx={{ whiteSpace: "normal", wordBreak: "break-all" }}
-                >
-                  {content}
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
+                <p className="break-all">{content}</p>
+              </div>
+            </div>
+          </div>
         ))}
-      </Box>
+      </div>
 
       {/* MESSAGE SEND FORM */}
-      <Box sx={{ backgroundColor: "#CEC1DB" }}>
+      <div className="">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -239,20 +152,24 @@ const ChatModal = ({
             setMessage("");
           }}
         >
-          <Box display={"flex"}>
-            <TextField
+          <div className="flex flex-col justify-start items-center mt-4">
+            <input
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder={"Enter your message..."}
-              sx={{ "& fieldset": { border: "none" }, boxSizing: "border-box" }}
+              placeholder="Enter your message..."
+              // fullWidth={true}
+              className="flex-1 p-2 rounded-none outline-b-none w-[80%]"
+              
             />
-            <Button type={"submit"} variant={"text"} sx={{ color: "#350968" }}>
-              Send
-            </Button>
-          </Box>
+            <div className="mx-auto my-1 p-1">
+              <Button variant="contained" color="primary" type="submit">
+                Send
+              </Button>
+            </div>
+          </div>
         </form>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

@@ -1,11 +1,5 @@
 /* eslint-disable no-unused-vars */
-import {
-  useCallback,
-  useEffect,
-  useState,
-  useMemo,
-  useRef,
-} from "react";
+import { useCallback, useEffect, useState, useMemo, useRef } from "react";
 import Page from "../containers/Page.jsx";
 import { useParams } from "react-router-dom";
 import { Box, Button, Grid, IconButton, Slider, Stack } from "@mui/material";
@@ -29,6 +23,7 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import playButtonStyle from "../components/common/MusicButtonStyle.js";
 import VolumeUpRounded from "@mui/icons-material/VolumeUpRounded";
 import VolumeDownRounded from "@mui/icons-material/VolumeDownRounded";
+import VideoApp from "../VideoApp.jsx";
 import TextEditor from "../components/room/TextEditor.jsx";
 
 const sortByOptions = ["name", "experience"];
@@ -368,22 +363,10 @@ const StudyingRoomPage = () => {
                 zIndex: 100,
               }}
             >
-              <Grid container sx={{ p: 10, pt: 1 }}>
-                {sortedRoomUsers?.map((roomUser) => (
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                    sx={{ p: 5, pt: 0 }}
-                    key={JSON.stringify(roomUser)}
-                  >
-                    <RoomUserCard
-                      {...roomUser}
-                      onChat={() => handleChangeTargetUser(roomUser)}
-                    />
-                  </Grid>
-                ))}
-              </Grid>
+              {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
+              <Box container sx={{ width: "60%", height: "100%" }}>
+                <VideoApp />
+              </Box>)}
             </Box>
           </Box>
           <Box

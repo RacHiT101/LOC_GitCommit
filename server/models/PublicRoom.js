@@ -5,6 +5,10 @@ const PublicRoomSchema = new Schema({
     required: true,
     type: String,
   },
+  categories: {
+    required: true,
+    type: [String]
+  },
   users: {
     required: true,
     type: [String],

@@ -9,12 +9,13 @@ class PublicRoomController {
     return publicRoomModel.findById(id);
   }
 
-  async createPublicRoom(name, users, playList, backgroundUrl) {
+  async createPublicRoom(name, users, playList, backgroundUrl,categories) {
     return await publicRoomModel.create({
       name,
       users,
       playList,
       backgroundUrl,
+      categories
     });
   }
 
