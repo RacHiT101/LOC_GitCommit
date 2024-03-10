@@ -131,7 +131,7 @@ const Studystats = () => {
                   <FaCircleInfo />
                 </div>
               </div>
-              <h2 className="text-5xl font-semibold">0</h2>
+              <h2 className="text-5xl font-semibold">3</h2>
               <h2 className="text-[#676f8a]">hours</h2>
             </div>
             <div className="bg-[#1e143d]  h-auto rounded-lg text-[#faf3e4] p-5">
@@ -144,7 +144,7 @@ const Studystats = () => {
                   <FaCircleInfo />
                 </div>
               </div>
-              <h2 className="text-5xl font-semibold">0</h2>
+              <h2 className="text-5xl font-semibold">4</h2>
               <h2 className="text-[#676f8a]">hours</h2>
             </div>
             <div className="bg-[#1e143d] h-auto rounded-lg text-[#faf3e4] p-5">
@@ -157,7 +157,7 @@ const Studystats = () => {
                   <FaCircleInfo />
                 </div>
               </div>
-              <h2 className="text-5xl font-semibold">0</h2>
+              <h2 className="text-5xl font-semibold">3</h2>
               <h2 className="text-[#676f8a]">hours</h2>
             </div>
             <div className="bg-[#1e143d]  h-auto rounded-lg text-[#faf3e4] p-5">
@@ -170,7 +170,7 @@ const Studystats = () => {
                   <FaCircleInfo />
                 </div>
               </div>
-              <h2 className="text-5xl font-semibold">0</h2>
+              <h2 className="text-5xl font-semibold">4</h2>
               <h2 className="text-[#676f8a]">hours</h2>
             </div>
           </div>

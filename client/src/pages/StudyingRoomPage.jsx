@@ -216,7 +216,7 @@ const StudyingRoomPage = () => {
           ?.map((res) => {
             return res[0];
           })
-          .map((user) => ({
+          ?.map((user) => ({
             ...user,
             profile: `/src/assets/profiles/${user.profile}`,
             hasUnread: false,
@@ -306,7 +306,7 @@ const StudyingRoomPage = () => {
       <Box
         sx={{
           width: "100%",
-          height: "90%",
+          height: "100%",
           background:
             roomData &&
             `url(/src/assets/backgrounds/${roomData?.backgroundUrl}) no-repeat center`,
@@ -322,7 +322,7 @@ const StudyingRoomPage = () => {
             display: "flex",
           }}
         >
-          <Box
+          {/* <Box
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -364,11 +364,12 @@ const StudyingRoomPage = () => {
               }}
             >
               {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
-              <Box container sx={{ width: "60%", height: "100%" }}>
-                <VideoApp />
-              </Box>)}
+                <Box container sx={{ width: "60%", height: "100%" }}>
+                  <VideoApp />
+                </Box>
+              )}
             </Box>
-          </Box>
+          </Box> */}
           <Box
             sx={{
               flex: 1,
@@ -376,7 +377,7 @@ const StudyingRoomPage = () => {
               c: "stretch",
               justifyContent: "stretch",
               height: "100%",
-              flexDirection: "column",
+              // flexDirection: "column",
               "&>*": {
                 flex: 1,
                 minHeight: 0,

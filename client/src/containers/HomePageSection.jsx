@@ -9,6 +9,7 @@ const HomePageSection = ({ children, verticalCenter, horizontalCenter }) => {
         minHeight: "100vh",
         display: "flex",
         overflowX: "hidden",
+        background: `linear-gradient(to right, rgba(50, 0, 60, 0.7), rgba(0, 0, 20, 0.7))`,
       }}
     >
       <Box

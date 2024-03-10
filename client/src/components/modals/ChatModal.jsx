@@ -53,7 +53,7 @@ const ChatModal = ({
   };
 
   return (
-    <div className="rounded-lg bg-white flex flex-col overflow-hidden h-full">
+    <div className="rounded-lg bg-white flex flex-col overflow-hidden ">
       {/* HEADER */}
       <div className=" px-4 py-2">
         <div

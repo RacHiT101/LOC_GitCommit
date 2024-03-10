@@ -1,22 +1,23 @@
-import React from 'react';
-import Chart from 'react-apexcharts';
+import React from "react";
+import Chart from "react-apexcharts";
 
 const PieGraph = ({ taskExpenses, categories }) => {
   // Calculate total expenses
-  const totalExpenses = taskExpenses.reduce((acc, expense) => acc + parseFloat(expense), 0);
+  const totalExpenses = taskExpenses.reduce(
+    (acc, expense) => acc + parseFloat(expense),
+    0
+  );
 
   // Calculate percentage of total expenses for each category
   const series = taskExpenses.map((expense) => (expense / totalExpenses) * 100);
-  // const remainingTopics = taskExpenses.map((totalTopics, index) => {
-  //   return totalTopics - progress[index];
-  // });
+
   const options = {
     chart: {
-      type: 'donut',
+      type: "donut",
     },
     labels: categories, // Use provided categories as labels
     dataLabels: {
-      enabled: false,
+      enabled: true,
     },
     legend: {
       show: false,
@@ -25,12 +26,12 @@ const PieGraph = ({ taskExpenses, categories }) => {
       pie: {
         size: 100,
         donut: {
-          size: '80%',
+          size: "80%",
         },
       },
     },
     annotations: {
-      position: 'front',
+      position: "front",
       points: [
         {
           x: 50,
@@ -39,11 +40,11 @@ const PieGraph = ({ taskExpenses, categories }) => {
             size: 0,
           },
           label: {
-            text: 'Center Text',
+            text: "Center Text",
             offsetY: 0,
             style: {
-              fontSize: '18px',
-              color: '#000',
+              fontSize: "18px",
+              color: "#000",
             },
           },
         },
@@ -52,8 +53,14 @@ const PieGraph = ({ taskExpenses, categories }) => {
   };
 
   return (
-    <div className='object-contain flex justify-center' id="equity">
-      <Chart options={options} series={series} type="donut" height={278.7} width={279} />
+    <div className="object-contain flex justify-center" id="equity">
+      <Chart
+        options={options}
+        series={series}
+        type="donut"
+        height={278.7}
+        width={279}
+      />
     </div>
   );
 };

@@ -11,9 +11,10 @@ const HomeScreen = ({ onLogin, onSignup }) => {
       <Box
         sx={{
           position: "absolute",
-          top: 0,
-          left: 0,
+          bottom: 180,
+          right: 100,
           display: { xs: "none", md: "block" },
+          
         }}
       >
         <img src={headphoneSvg} alt={""} />
@@ -44,12 +45,12 @@ const HomeScreen = ({ onLogin, onSignup }) => {
               fontSize: {
                 xs: "34px",
                 md: "60px",
-                lg: "96px",
+                lg: "64px",
               },
               textShadow: "2px 2px #9f7ff3",
             }}
           >
-            EXPERIENCE THE
+            EXPERIENCE VIRTUAL STUDY ROOMS
           </StyledTypography>
         </Box>
         <Box>
@@ -66,13 +67,13 @@ const HomeScreen = ({ onLogin, onSignup }) => {
               WebkitTextStroke: "3px #9f7ff3",
             }}
           >
-            Virtual Study room
+           WITH STUDIFI
           </Typography>
         </Box>
-        <Box sx={{ mt: 10 }}>
+        {/* <Box sx={{ mt: 10 }}>
           <StyledTypography sx={{ fontWeight: 800 }}>50M+</StyledTypography>
           <StyledTypography>Students are experiencing it</StyledTypography>
-        </Box>
+        </Box> */}
         <Box
           sx={{
             mt: 10,

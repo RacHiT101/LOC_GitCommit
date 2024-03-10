@@ -14,13 +14,9 @@ const ResultPage = ({
   const NumTopics = subjectDetails.map((obj) => obj.numTopics);
   console.log(NameArray);
   console.log(NumTopics);
+  const totalTopics = NumTopics.reduce((acc, curr) => acc + curr, 0); // Calculate total number of topics
   const totalHours = daysLeft * hoursLeft;
-  const hoursPerTopic = subjectDetails.map((subject) => {
-    // Calculate the total number of topics for the subject
-    const totalTopics = subject.numTopics;
-    // Calculate the hours per topic
-    return totalHours / totalTopics;
-  });
+  const hoursPerTopic = (totalHours / totalTopics).toFixed(2); // Round to two decimal places
 
   // State to keep track of progress for each subject
   const [progress, setProgress] = useState(subjectDetails.map(() => 0));
@@ -38,17 +34,21 @@ const ResultPage = ({
 
   return (
     <div className="w-full p-8">
-      <h1 className="text-white text-3xl text-center">SCHEDULING SYSTEM</h1>
-      <div className="flex items-center gap-5 font-bold bg- p-3 rounded-lg my-4">
-        <h4 className="text-xl font-semibold text-white">Total Hours</h4>
-        <h1 className="text-xl text-white">{totalHours}</h1>
+      <h1 className="text-white text-4xl text-center font-bold">
+        SCHEDULING SYSTEM
+      </h1>
+      <div className="bg-[#1e143d] px-5 rounded-lg flex items-center justify-between mt-5">
+        <div className="flex items-center gap-5   rounded-lg my-4">
+          <h4 className="text-xl font-semibold text-white">Total Hours</h4>
+          <h1 className="text-xl text-white">{totalHours}</h1>
+        </div>
+        <div className="text-white flex ">
+          <p className="mr-4">Days Left: {daysLeft}</p>
+          <p>Hours Left: {hoursLeft}</p>
+        </div>
       </div>
-      <div className="text-white flex mb-4">
-        <p className="mr-4">Days Left: {daysLeft}</p>
-        <p>Hours Left: {hoursLeft}</p>
-      </div>
-      <p className="text-white font-semibold my-2 text-xl">Subjects:</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8 mt-5">
         <div className="bg-[#1e143d] rounded-lg col-span-2 ">
           <BarGraph
             taskExpenses={NumTopics}
@@ -56,8 +56,13 @@ const ResultPage = ({
             progress={progress}
           />
         </div>
-        <div className="bg-[#1e143d] rounded-lg items-center justify-center flex w-full h-full ">
-          <PieGraph taskExpenses={NumTopics} categories={NameArray} className=""/>
+        <div className="bg-[#1e143d] rounded-lg flex justify-center items-center mx-auto w-full h-full">
+          <div className="">
+            <PieGraph taskExpenses={NumTopics} categories={NameArray} />
+            <h1 className="flex items-center justify-center text-white mt-5">
+              SUBJECT DISTRIBUTION
+            </h1>
+          </div>
         </div>
       </div>
 
@@ -71,7 +76,7 @@ const ResultPage = ({
             <div className="grid grid-cols-1 gap-2 mx-5 py-5">
               {Array.from({ length: subject.numTopics }, (_, topicIndex) => {
                 const topicId = `topic_${subjectIndex}_${topicIndex}`;
-                const hours = hoursPerTopic[subjectIndex];
+                const hours = hoursPerTopic; 
                 return (
                   <div key={topicIndex} className="flex items-center">
                     <input
@@ -99,7 +104,7 @@ const ResultPage = ({
       <div className="flex justify-center">
         <Button
           onClick={() => setScheduling(false)}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400 mt-5"
         >
           Add Schedule
         </Button>
