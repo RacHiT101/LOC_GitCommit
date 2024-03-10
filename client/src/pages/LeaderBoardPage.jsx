@@ -1,5 +1,4 @@
 import Page from "../containers/Page.jsx";
-import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import TopLeaderCard from "../components/leaderboard/TopLeaderCard.jsx";
 import RankBar from "../components/leaderboard/RankBar.jsx";
@@ -9,9 +8,10 @@ import { useFetch } from "../hooks/useFetch.js";
 
 const LeaderBoardPage = () => {
   const { data, isLoading } = useFetch("users");
+  console.log(data);
   const dataModified = isLoading
     ? []
-    : data.sort((a, b) => b.experience - a.experience);
+    : data.sort((a, b) => b.coins - a.coins);
   const dataArray = dataModified.map((item, index) => {
     return {
       ...item,
@@ -24,6 +24,9 @@ const LeaderBoardPage = () => {
   const podiumArray = dataArray.slice(0, 3);
   const rankingArray = dataArray.slice(3);
   const heightPercent = ["10%", "30%", "5%", "8%", "47%"];
+  // console.log(dataModified);
+  // console.log(dataArray);
+  // console.log(podiumArray);
   return (
     <Page title={"Leaderboard"}>
       <Box
@@ -59,7 +62,7 @@ const LeaderBoardPage = () => {
             height: heightPercent[1],
           }}
         >
-          {podiumArray?.map(({ profile, username, ranking, hours }, index) => (
+          {podiumArray?.map(({ profile, username, ranking, hours, coins }, index) => (
             <Box
               display={"flex"}
               flexDirection={"row"}
@@ -74,6 +77,7 @@ const LeaderBoardPage = () => {
                 profileImage={profile}
                 name={username}
                 ranking={ranking}
+                coins={coins}
                 hours={hours}
                 sx={{ backgroundColor: 'blue', color: 'white' }}
               />
@@ -118,6 +122,7 @@ const LeaderBoardPage = () => {
             xpValue={"XP"}
             assetValue={"COINS"}
             hours={"HOURS"}
+            podiumArray={podiumArray}
             sx={{ backgroundColor: 'green', color: 'white' }}
           />
         </Box>

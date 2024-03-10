@@ -15,6 +15,7 @@ import privateRoomBg from "../assets/private-room/private-room-bg.svg";
 import { useMutation } from "../hooks/useMutation.js";
 import { HTTP_METHOD } from "../hooks/http-methods.js";
 import { MdQueryStats } from "react-icons/md";
+import { AiOutlineSchedule } from "react-icons/ai";
 
 const drawerWidth = 80;
 
@@ -52,7 +53,7 @@ const Page = ({
           });
           await reFetchUserData();
         } catch (e) {
-          console.log(e)
+          console.log(e);
         }
         handleClose();
         navigate("/private-rooms");
@@ -107,6 +108,12 @@ const Page = ({
         onClick: () => navigate("/studystats"),
         shouldHighlight: pathname.startsWith("/studystats"),
         tooltip: "StudyStats",
+      },
+      {
+        icon: <AiOutlineSchedule />,
+        onClick: () => navigate("/schedulingsystem"),
+        shouldHighlight: pathname.startsWith("/schedulingsystem]"),
+        tooltip: "SchedulingSystem",
       },
       {
         icon: <ShoppingCartIcon />,

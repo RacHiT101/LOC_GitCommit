@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { Box } from "@mui/material";
 import Page from "../containers/Page.jsx";
 import animation from "../assets/login-animation.json";
@@ -21,7 +21,7 @@ const LoginPage = () => {
     [login]
   );
   const signupHandler = useCallback(
-    (values) => signup(values?.email, values?.password, values?.username),
+    (values) => signup(values?.email, values?.password, values?.username, values.categories,),
     [signup]
   );
 

@@ -16,7 +16,7 @@ function selectRankingMedal(ranking) {
   }
 }
 
-const TopLeaderCard = ({ profileImage, name, ranking, hours }) => {
+const TopLeaderCard = ({ coins, profileImage, name, ranking, hours }) => {
   return (
     <Box
       display={"flex"}
@@ -118,7 +118,7 @@ const TopLeaderCard = ({ profileImage, name, ranking, hours }) => {
               color: "white",
             }}
           >
-            {hours?.toLocaleString()} hours
+            Coins: {coins} {hours?.toLocaleString()} hours
           </Typography>
         </Box>
       </Box>

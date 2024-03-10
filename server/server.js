@@ -11,7 +11,17 @@ const server = app.listen(PORT, () => {
 const io = new Server(server, {
   cors: {
     origin: "*",
+    methods: ["GET", "POST"],
   },
 });
 
 ConfigureSocket(io);
+
+io.on("connection", (socket) => {
+  socket.on("send-changes", (delta) => {
+    socket.broadcast.emit("receive-changes", delta);
+    // console.log("hi");
+    console.log(delta)
+  });
+  console.log(`Socket connected`);
+});

@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { Box, IconButton } from "@mui/material";
 import Switcher from "../entry/Switcher.jsx";
 import LoginForm from "../entry/LoginForm.jsx";

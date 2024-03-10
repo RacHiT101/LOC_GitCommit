@@ -1,9 +1,5 @@
 import { Box, Typography } from "@mui/material";
 
-/**
- * The room creater is used to create a new private room.
- */
-
 const RoomCreater = ({ onClick }) => {
   return (
     <Box

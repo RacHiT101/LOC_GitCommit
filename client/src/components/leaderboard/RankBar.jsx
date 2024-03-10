@@ -9,7 +9,10 @@ const RankBar = ({
   xpValue,
   assetValue,
   hours,
+  podiumArray
 }) => {
+
+  console.log(podiumArray);
   return (
     <Box
       display={"flex"}
@@ -100,7 +103,7 @@ const RankBar = ({
           flex: 1,
         }}
       >
-        {hours?.toLocaleString()}
+      {hours?.toLocaleString()}
       </Typography>
     </Box>
   );
