@@ -49,7 +49,7 @@ const CreatePollPart = ({
     <div className={`flex flex-col xl:m-4 m-2 overflow-y-auto`}>
       <input
         type="text"
-        className="bg-gray-750  text-white text-sm rounded block w-full p-2.5 border border-gray-600 placeholder-gray-400 focus:ring-0 focus:border-purple-550"
+        className="bg-gray-750  text-black text-sm rounded block w-full p-2.5 border border-gray-600 placeholder-gray-400 focus:ring-0 focus:border-purple-550"
         placeholder="What you want to ask ?"
         autoFocus
         value={question}
@@ -58,7 +58,7 @@ const CreatePollPart = ({
 
       {questionErr && (
         <div className="mt-[2px]">
-          <p className="text-xs text-red-150">Please enter proper question.</p>
+          <p className="text-xs text-red-300">Please enter proper question.</p>
         </div>
       )}
 
@@ -105,9 +105,9 @@ const CreatePollPart = ({
                         type="text"
                         className={`border-none ${
                           item.isCorrect && item.option !== ""
-                            ? "bg-purple-550"
+                            ? "bg-purple-500"
                             : "bg-customGray-900"
-                        } text-white focus:ring-0 rounded-l`}
+                        } text-black focus:ring-0 rounded-l`}
                         placeholder="Add your options"
                         autocomplete="off"
                         value={item.option}
@@ -142,7 +142,7 @@ const CreatePollPart = ({
                         <XIcon
                           className={`h-5 w-5 ${
                             item.isCorrect && item.option !== ""
-                              ? "text-white"
+                              ? "text-black"
                               : "text-gray-400"
                           }`}
                         />

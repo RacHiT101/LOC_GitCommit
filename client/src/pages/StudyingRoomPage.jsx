@@ -322,19 +322,19 @@ const StudyingRoomPage = () => {
             display: "flex",
           }}
         >
-          {/* <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-              flex: 2,
-            }}
+          <Box
+            // sx={{
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   position: "relative",
+            //   flex: 2,
+            // }}
           >
-            <Box sx={{ position: "absolute", top: 1, left: 4 }}>
+            {/* <Box sx={{ position: "absolute", top: 1, left: 4 }}>
               <img src={logo} alt={""} />
-            </Box>
-            <Box sx={{ pl: 15, paddingY: 2 }}>
-              {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
+            </Box> */}
+            {/* <Box sx={{ pl: 15, paddingY: 2 }}> */}
+              {/* {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
                 <Button
                   onClick={() => {
                     setOpenSettingModal(true);
@@ -352,8 +352,8 @@ const StudyingRoomPage = () => {
                 >
                   Setting
                 </Button>
-              )}
-            </Box>
+              )} */}
+            {/* </Box> */}
             <Box
               className={"hide-scroll-bar"}
               sx={{
@@ -369,7 +369,7 @@ const StudyingRoomPage = () => {
                 </Box>
               )}
             </Box>
-          </Box> */}
+          </Box>
           <Box
             sx={{
               flex: 1,
