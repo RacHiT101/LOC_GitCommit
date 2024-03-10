@@ -3,15 +3,11 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import MoneyIcon from "../../assets/asset-money-icon.svg";
+import MoneyIcon from "../../assets/asset-money-icon.png";
 import { Box } from "@mui/material";
 import PurchaseButton from "./PurchaseButton.jsx";
 import StyledCard from "../common/StyleCard.jsx";
 
-/**
- * A background product card contains the background image, background name, the money it
- * costs to purchase the background, and the purchase button to purchase the background product.
- */
 
 const BackgroundProductCard = ({ value, productName, image, productId }) => {
   return (
@@ -20,7 +16,8 @@ const BackgroundProductCard = ({ value, productName, image, productId }) => {
       sx={{
         maxWidth: 350,
         borderRadius: 3,
-        background: "rgba(255, 255, 255, .5)",
+        background: `linear-gradient(to right, rgba(50, 0, 60, 0.7), rgba(0, 0, 20, 0.7))`,
+          boxShadow: "3px 3px 2px 1px rgba(255,255,255,0.2)",
         backdropFilter: "blur(5px)",
         ":hover": {
           boxShadow: 20, // theme.shadows[20]
@@ -34,6 +31,7 @@ const BackgroundProductCard = ({ value, productName, image, productId }) => {
             gutterBottom
             variant="h4"
             fontWeight="bold"
+            className="text-white"
             component="div"
           >
             {productName}
@@ -46,6 +44,7 @@ const BackgroundProductCard = ({ value, productName, image, productId }) => {
               gutterBottom
               variant="h5"
               fontWeight="bold"
+              className="text-white"
               component="div"
             >
               {value}

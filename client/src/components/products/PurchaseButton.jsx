@@ -8,9 +8,7 @@ import { useNotification } from "../../providers/NotificationProvider.jsx";
 import { useMutation } from "../../hooks/useMutation.js";
 import { HTTP_METHOD } from "../../hooks/http-methods.js";
 
-/**
- * A purchase button which can be used on the pruduct cards.
- */
+
 
 const PurchaseButton = ({ title, type, image, cost, productId }) => {
   const { handleOpen, setContent, handleClose } = useModal();
@@ -23,7 +21,7 @@ const PurchaseButton = ({ title, type, image, cost, productId }) => {
     backgroundColor: "#400A71",
     textTransform: "unset !important",
     fontSize: 14,
-    fontFamily: "Rubik",
+    fontFamily: "revert",
     "&:hover": {
       opacity: "0.6",
       transform: "scale(1.05)",

@@ -7,7 +7,9 @@ const PieGraph = ({ taskExpenses, categories }) => {
 
   // Calculate percentage of total expenses for each category
   const series = taskExpenses.map((expense) => (expense / totalExpenses) * 100);
-
+  const remainingTopics = taskExpenses.map((totalTopics, index) => {
+    return totalTopics - progress[index];
+  });
   const options = {
     chart: {
       type: 'donut',

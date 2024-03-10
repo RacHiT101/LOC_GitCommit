@@ -8,11 +8,6 @@ import { Box } from "@mui/material";
 import PurchaseButton from "./PurchaseButton.jsx";
 import StyledCard from "../common/StyleCard.jsx";
 
-/**
- * A profile photo product card contains the profile photo, the photo's name, the money it costs
- * to purchase the profile photo, and the purchase button to purchase the profile photo product.
- */
-
 const ProfileProductCard = ({ value, productName, image, productId }) => {
   return (
     <StyledCard

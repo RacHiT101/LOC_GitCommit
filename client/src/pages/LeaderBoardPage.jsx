@@ -4,6 +4,8 @@ import TopLeaderCard from "../components/leaderboard/TopLeaderCard.jsx";
 import RankBar from "../components/leaderboard/RankBar.jsx";
 import { useFetch } from "../hooks/useFetch.js";
 
+
+
 const LeaderBoardPage = () => {
   const { data, isLoading } = useFetch("users");
   console.log(data);
@@ -33,7 +35,6 @@ const LeaderBoardPage = () => {
         display={"flex"}
         flexDirection={"column"}
         justifyContent={"flex-start"}
-        
         sx={{
           width: "100%",
           height: "100%",
@@ -56,7 +57,6 @@ const LeaderBoardPage = () => {
           flexDirection={"row"}
           justifyContent={"space-around"}
           alignItems={"space-between"}
-          
           sx={{
             width: "100%",
             height: heightPercent[1],
@@ -67,7 +67,6 @@ const LeaderBoardPage = () => {
               display={"flex"}
               flexDirection={"row"}
               justifyContent={"space-around"}
-              
               sx={{
                 width: "100%",
                 height: "100%",
@@ -80,6 +79,7 @@ const LeaderBoardPage = () => {
                 ranking={ranking}
                 coins={coins}
                 hours={hours}
+                sx={{ backgroundColor: 'blue', color: 'white' }}
               />
             </Box>
           ))}
@@ -87,7 +87,6 @@ const LeaderBoardPage = () => {
         <Box
           display={"flex"}
           flexDirection={"row"}
-          
           sx={{
             width: "100%",
             height: heightPercent[2],
@@ -100,6 +99,7 @@ const LeaderBoardPage = () => {
               fontSize: "1.3rem",
               color: "white",
               flexGrow: "0.6",
+              my: -1,
             }}
           >
             All Users
@@ -110,7 +110,6 @@ const LeaderBoardPage = () => {
           marginLeft={1.7}
           paddingBottom={1}
           flexDirection={"row"}
-          
           sx={{
             width: "92%",
             height: heightPercent[3],
@@ -124,6 +123,7 @@ const LeaderBoardPage = () => {
             assetValue={"COINS"}
             hours={"HOURS"}
             podiumArray={podiumArray}
+            sx={{ backgroundColor: 'green', color: 'white' }}
           />
         </Box>
         <Box

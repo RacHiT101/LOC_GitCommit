@@ -6,11 +6,6 @@ import React from "react";
 import { useFetch } from "../../hooks/useFetch.js";
 import ProgressLoading from "../common/ProgressLoading.jsx";
 
-/**
- * A product container which contains the background product card, the music product card, and
- * the profile product card.
- */
-
 const ProductContainer = ({ value }) => {
   const url =
     value === 0
@@ -41,18 +36,22 @@ const ProductContainer = ({ value }) => {
     <div>
       {value === 0 ? (
         // background product card
-        <Box className="flex flex-row flex-wrap space-x-10 space-y-10">
+        <Box className="flex flex-row flex-wrap space-x-10 space-y-10"
+        
+        >
           <div></div>
           {isLoading ? (
             <ProgressLoading />
           ) : (
             data.map((it, index) => (
               <BackgroundProductCard
+              
                 key={index}
                 value={it?.price}
                 productName={it?.name}
                 image={`/src/assets/backgrounds/${it?.url}`}
                 productId={it?._id}
+                
               />
             ))
           )}
@@ -71,6 +70,8 @@ const ProductContainer = ({ value }) => {
                 productName={it?.name}
                 image={`/src/assets/profiles/${it?.url}`}
                 productId={it?._id}
+                
+            
               />
             ))
           )}
