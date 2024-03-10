@@ -18,7 +18,7 @@ const PrivateRouter = () => {
     <>
       <Routes>
         <Route path={"/public-rooms"} element={<PublicRoomPage />} />
-        {/* <Route path={"/schedulingsystem"} element={<Scheduling />} /> */}
+        <Route path={"/schedulingsystem"} element={<Scheduling />} />
         <Route path={"/resultpage"} element={<ResultPage />} />
         <Route path={"/studystats"} element={<Studystats />} />
         <Route path={"/leaderboard"} element={<LeaderBoardPage />} />
