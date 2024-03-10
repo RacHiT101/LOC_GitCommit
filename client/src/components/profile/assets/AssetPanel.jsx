@@ -58,7 +58,7 @@ const AssetPanel = ({ backgrounds, musics, profilePhotos }) => {
         width={"100%"}
         height={"85%"}
         sx={{
-          backgroundColor: "#401f6a",
+          backgroundColor: "#1E143D",
           borderRadius: "0.7vw",
           overflowY: "auto",
         }}

@@ -41,7 +41,7 @@ const ResultPage = ({
   return (
     <div className="w-full p-8">
       <h1 className="text-white text-3xl text-center">SCHEDULING SYSTEM</h1>
-      <div className="flex items-center gap-5 bg-purple-900 p-3 rounded-lg my-4">
+      <div className="flex items-center gap-5 font-bold bg- p-3 rounded-lg my-4">
         <h4 className="text-xl font-semibold text-white">Total Hours</h4>
         <h1 className="text-xl text-white">{totalHours}</h1>
       </div>
@@ -51,19 +51,15 @@ const ResultPage = ({
       </div>
       <p className="text-white font-semibold my-2 text-xl">Subjects:</p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-        <div className="bg-purple-900 rounded-lg col-span-2 ">
+        <div className="bg-[#1e143d] rounded-lg col-span-2 ">
           <BarGraph
             taskExpenses={subjectDetails.map(subject => subject.numTopics)}
             categories={subjectDetails.map(subject => subject.name)}
             progress={subjectDetails.map((_, index) => hoursPerTopic.slice(index * subjectDetails[index].numTopics, (index + 1) * subjectDetails[index].numTopics).reduce((acc, curr) => acc + parseFloat(curr), 0))}
           />
         </div>
-        <div className="bg-purple-900 rounded-lg">
-          <PieGraph
-            taskExpenses={subjectDetails.map(subject => subject.numTopics)}
-            categories={subjectDetails.map(subject => subject.name)}
-            hoursPerTopic={hoursPerTopic}
-          />
+        <div className="bg-[#1e143d] rounded-lg items-center justify-center flex w-full h-full ">
+          <PieGraph taskExpenses={NumTopics} categories={NameArray} className=""/>
         </div>
       </div>
 

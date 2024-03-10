@@ -1,7 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const BarGraph = ({ taskExpenses, categories ,progress}) => {
+const BarGraph = ({ taskExpenses, categories, progress }) => {
   // Fixed values for Expected Investment
   const expectedInvestment = [0]; // Adjust according to your categories
 
@@ -39,7 +39,7 @@ const BarGraph = ({ taskExpenses, categories ,progress}) => {
         colors: "#fff", // Set text color to white
       },
     },
-    grid:{
+    grid: {
       show: false
     },
     stroke: {
@@ -55,7 +55,7 @@ const BarGraph = ({ taskExpenses, categories ,progress}) => {
     },
     yaxis: {
       title: {
-        text: "₹ (thousands)",
+        text: "Time",
         style: {
           color: "#fff", // Set text color to white
         },
@@ -70,7 +70,7 @@ const BarGraph = ({ taskExpenses, categories ,progress}) => {
     tooltip: {
       y: {
         formatter: function (val) {
-          return "₹ " + val + " thousands";
+          return val;
         },
       },
     },
@@ -84,4 +84,3 @@ const BarGraph = ({ taskExpenses, categories ,progress}) => {
 };
 
 export default BarGraph;
- 

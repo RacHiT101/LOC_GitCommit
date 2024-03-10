@@ -9,7 +9,7 @@ const ModifiableTextField = ({ label, value, onSubmitChange }) => {
   return (
     <Box
       sx={{
-        backgroundColor: `#401f6a`,
+        backgroundColor: `#1E143D`,
         borderRadius: "10px",
         width: "100%",
         height: "100%",
