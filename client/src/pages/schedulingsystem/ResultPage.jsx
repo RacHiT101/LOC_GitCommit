@@ -10,56 +10,59 @@ const ResultPage = ({
   scheduling,
   setScheduling,
 }) => {
+  const NameArray = subjectDetails.map((obj) => obj.name);
+  const NumTopics = subjectDetails.map((obj) => obj.numTopics);
+  console.log(NameArray);
+  console.log(NumTopics);
+  const totalTopics = NumTopics.reduce((acc, curr) => acc + curr, 0); // Calculate total number of topics
   const totalHours = daysLeft * hoursLeft;
+  const hoursPerTopic = (totalHours / totalTopics).toFixed(2); // Round to two decimal places
 
-  // Initialize an array to track the hours per topic
-  const [hoursPerTopic, setHoursPerTopic] = useState([]);
-
-  // Calculate and set initial hours per topic when component mounts
-  useState(() => {
-    const totalTopics = subjectDetails.reduce((acc, subject) => acc + subject.numTopics, 0);
-    const initialHoursPerTopic = Array(totalTopics).fill((totalHours / totalTopics).toFixed(2));
-    setHoursPerTopic(initialHoursPerTopic);
-  }, [daysLeft, hoursLeft, subjectDetails]);
+  // State to keep track of progress for each subject
+  const [progress, setProgress] = useState(subjectDetails.map(() => 0));
 
   // Function to handle checkbox change
   const handleCheckboxChange = (subjectIndex, topicIndex, isChecked) => {
-    const updatedHoursPerTopic = [...hoursPerTopic];
-    const totalTopics = subjectDetails.reduce((acc, subject) => acc + subject.numTopics, 0);
-    const topicOffset = subjectDetails.slice(0, subjectIndex).reduce((acc, curr) => acc + curr.numTopics, 0);
-    const topicPosition = topicOffset + topicIndex;
-    
+    const newProgress = [...progress];
     if (isChecked) {
-      updatedHoursPerTopic[topicPosition] = (totalHours / totalTopics).toFixed(2);
+      newProgress[subjectIndex] += 1;
     } else {
-      updatedHoursPerTopic[topicPosition] = 0;
+      newProgress[subjectIndex] -= 1;
     }
-
-    setHoursPerTopic(updatedHoursPerTopic);
+    setProgress(newProgress);
   };
 
   return (
     <div className="w-full p-8">
-      <h1 className="text-white text-3xl text-center">SCHEDULING SYSTEM</h1>
-      <div className="flex items-center gap-5 font-bold bg- p-3 rounded-lg my-4">
-        <h4 className="text-xl font-semibold text-white">Total Hours</h4>
-        <h1 className="text-xl text-white">{totalHours}</h1>
+      <h1 className="text-white text-4xl text-center font-bold">
+        SCHEDULING SYSTEM
+      </h1>
+      <div className="bg-[#1e143d] px-5 rounded-lg flex items-center justify-between mt-5">
+        <div className="flex items-center gap-5   rounded-lg my-4">
+          <h4 className="text-xl font-semibold text-white">Total Hours</h4>
+          <h1 className="text-xl text-white">{totalHours}</h1>
+        </div>
+        <div className="text-white flex ">
+          <p className="mr-4">Days Left: {daysLeft}</p>
+          <p>Hours Left: {hoursLeft}</p>
+        </div>
       </div>
-      <div className="text-white flex mb-4">
-        <p className="mr-4">Days Left: {daysLeft}</p>
-        <p>Hours Left: {hoursLeft}</p>
-      </div>
-      <p className="text-white font-semibold my-2 text-xl">Subjects:</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8 mt-5">
         <div className="bg-[#1e143d] rounded-lg col-span-2 ">
           <BarGraph
-            taskExpenses={subjectDetails.map(subject => subject.numTopics)}
-            categories={subjectDetails.map(subject => subject.name)}
-            progress={subjectDetails.map((_, index) => hoursPerTopic.slice(index * subjectDetails[index].numTopics, (index + 1) * subjectDetails[index].numTopics).reduce((acc, curr) => acc + parseFloat(curr), 0))}
+            taskExpenses={NumTopics}
+            categories={NameArray}
+            progress={progress}
           />
         </div>
-        <div className="bg-[#1e143d] rounded-lg items-center justify-center flex w-full h-full ">
-          <PieGraph taskExpenses={NumTopics} categories={NameArray} className=""/>
+        <div className="bg-[#1e143d] rounded-lg flex justify-center items-center mx-auto w-full h-full">
+          <div className="">
+            <PieGraph taskExpenses={NumTopics} categories={NameArray} />
+            <h1 className="flex items-center justify-center text-white mt-5">
+              SUBJECT DISTRIBUTION
+            </h1>
+          </div>
         </div>
       </div>
 
@@ -73,6 +76,7 @@ const ResultPage = ({
             <div className="grid grid-cols-1 gap-2 mx-5 py-5">
               {Array.from({ length: subject.numTopics }, (_, topicIndex) => {
                 const topicId = `topic_${subjectIndex}_${topicIndex}`;
+                const hours = hoursPerTopic; // Use the same hours per topic for all topics
                 return (
                   <div key={topicIndex} className="flex items-center">
                     <input
@@ -87,7 +91,7 @@ const ResultPage = ({
                       }
                     />
                     <label htmlFor={topicId} className="ml-2">
-                      Chapter {topicIndex + 1} - {hoursPerTopic[subjectIndex * subject.numTopics + topicIndex]} hrs
+                      Chapter {topicIndex + 1} - {hours} hrs
                     </label>
                   </div>
                 );
@@ -100,7 +104,7 @@ const ResultPage = ({
       <div className="flex justify-center">
         <Button
           onClick={() => setScheduling(false)}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400 mt-5"
         >
           Add Schedule
         </Button>

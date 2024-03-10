@@ -67,14 +67,14 @@ const ChatInput = ({ inputHeight }) => {
           >
             <PaperAirplaneIcon
               className={`w-6 h-6 ${
-                message.length < 2 ? "text-gray-500 " : "text-white"
+                message.length < 2 ? "text-gray-500 " : "text-black"
               }`}
             />
           </button>
         </span>
         <input
           type="text"
-          className="py-4 text-base text-white border-gray-400 border bg-gray-750 rounded pr-10 pl-2 focus:outline-none w-full"
+          className="py-4 text-base text-black border-gray-400 border bg-gray-750 rounded pr-10 pl-2 focus:outline-none w-full"
           placeholder="Write your message"
           autocomplete="off"
           ref={input}
