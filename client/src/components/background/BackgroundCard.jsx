@@ -7,6 +7,7 @@ export default function BackgroundCard({
   isSelected,
   onClick,
 }) {
+  // console.log(image.url;
   return (
     <Box
       sx={{

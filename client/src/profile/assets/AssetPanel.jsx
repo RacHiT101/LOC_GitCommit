@@ -73,7 +73,13 @@ const AssetPanel = ({ backgrounds, musics, profilePhotos }) => {
         ) : (
           <ProfileGrid images={profilePhotos} />
         )} */}
-        {/* <BackgroundSelectorGrid images={backgrounds} /> */}
+        <BackgroundSelectorGrid
+          images={backgrounds}
+          onClick={(imageUri) => {
+            setValue(imageUri);
+          }}
+          // index={}
+        />
       </Box>
     </Stack>
   );

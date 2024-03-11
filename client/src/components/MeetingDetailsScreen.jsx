@@ -22,7 +22,6 @@ export function MeetingDetailsScreen({
 
   const { getCurrentUser, loading, getCustomUser } = useAuth();
 
-  // console.log(getCurrentUser());
   console.log(getCustomUser());
   return (
     <div
@@ -56,7 +55,7 @@ export function MeetingDetailsScreen({
               setStudioCode(e.target.value);
             }}
             placeholder={"Enter studio code"}
-            className="px-4 py-3 bg-gray-650 rounded-xl text-white w-full text-center"
+            className="px-4 py-3 bg-gray-600 rounded-xl text-white w-full text-center"
           />
           {studioCodeError && (
             <p className="text-xs text-red-600">
@@ -108,7 +107,7 @@ export function MeetingDetailsScreen({
         <div className="w-full md:mt-0 mt-4 flex flex-col">
           <div className="flex items-center justify-center flex-col w-full">
             <button
-              className="w-full bg-purple-400 text-white px-2 py-3 rounded-xl"
+              className="w-full bg-purple-300 text-white px-2 py-3 rounded-xl"
               onClick={async (e) => {
                 const studioCode = await _handleOnCreateMeeting();
                 setStudioCode(studioCode);
@@ -120,7 +119,7 @@ export function MeetingDetailsScreen({
             </button>
 
             <button
-              className="w-full bg-purple-400 text-white px-2 py-3 mt-5 rounded-xl"
+              className="w-full bg-purple-300 text-white px-2 py-3 mt-5 rounded-xl"
               onClick={async (e) => {
                 setIsJoinMeetingClicked(true);
                 setMeetingMode(Constants.modes.CONFERENCE);

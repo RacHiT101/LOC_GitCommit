@@ -216,7 +216,7 @@ const StudyingRoomPage = () => {
           ?.map((res) => {
             return res[0];
           })
-          .map((user) => ({
+          ?.map((user) => ({
             ...user,
             profile: `/src/assets/profiles/${user.profile}`,
             hasUnread: false,
@@ -306,7 +306,7 @@ const StudyingRoomPage = () => {
       <Box
         sx={{
           width: "100%",
-          height: "90%",
+          height: "100%",
           background:
             roomData &&
             `url(/src/assets/backgrounds/${roomData?.backgroundUrl}) no-repeat center`,
@@ -323,18 +323,18 @@ const StudyingRoomPage = () => {
           }}
         >
           <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              position: "relative",
-              flex: 2,
-            }}
+            // sx={{
+            //   display: "flex",
+            //   flexDirection: "column",
+            //   position: "relative",
+            //   flex: 2,
+            // }}
           >
-            <Box sx={{ position: "absolute", top: 1, left: 4 }}>
+            {/* <Box sx={{ position: "absolute", top: 1, left: 4 }}>
               <img src={logo} alt={""} />
-            </Box>
-            <Box sx={{ pl: 15, paddingY: 2 }}>
-              {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
+            </Box> */}
+            {/* <Box sx={{ pl: 15, paddingY: 2 }}> */}
+              {/* {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
                 <Button
                   onClick={() => {
                     setOpenSettingModal(true);
@@ -352,8 +352,8 @@ const StudyingRoomPage = () => {
                 >
                   Setting
                 </Button>
-              )}
-            </Box>
+              )} */}
+            {/* </Box> */}
             <Box
               className={"hide-scroll-bar"}
               sx={{
@@ -362,11 +362,12 @@ const StudyingRoomPage = () => {
                 position: "relative",
                 zIndex: 100,
               }}
-            >
+            > 
               {privateRoom && privateRoom?.ownerId === getCustomUser()?._id && (
-              <Box container sx={{ width: "60%", height: "100%" }}>
-                <VideoApp />
-              </Box>)}
+                <Box container sx={{ width: "60%", height: "100%" }}>
+                  <VideoApp />
+                </Box>
+              )}
             </Box>
           </Box>
           <Box
@@ -376,7 +377,7 @@ const StudyingRoomPage = () => {
               c: "stretch",
               justifyContent: "stretch",
               height: "100%",
-              flexDirection: "column",
+              // flexDirection: "column",
               "&>*": {
                 flex: 1,
                 minHeight: 0,
